@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Infinite Shelf</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1b2430;
+    --paper: #ffffff;
+    --paper-dim: #f4f4f4;
+    --lamp: #d99a3d;
+    --lamp-deep: #b5772a;
+    --sea: #223a4d;
+    --rule: rgba(27,36,48,0.18);
+    --font-body: 'Lora', Georgia, serif;
+    --font-ui: 'Jost', sans-serif;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ink: #1b2430; --paper: #ffffff; --paper-dim: #f4f4f4;
+      --rule: rgba(27,36,48,0.18); --sea: #223a4d;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ink: #1b2430; --paper: #ffffff; --paper-dim: #f4f4f4;
+    --rule: rgba(27,36,48,0.18); --sea: #223a4d;
+  }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: var(--font-body); line-height: 1.7;
+    min-height: 100%;
+  }
+  header.site {
+    position: sticky; top: 0; z-index: 100;
+    padding: env(safe-area-inset-top, 0px) 0 0;
+    background: var(--paper); border-bottom: 1px solid var(--rule);
+  }
+  .bar {
+    max-width: 1100px; margin: 0 auto; padding: 12px 16px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 8px;
+    font-family: var(--font-ui);
+  }
+  .brand { font-weight: 500; letter-spacing: 0.02em; cursor: pointer; background: none; border: none; color: var(--ink); font-size: 0.95rem; font-family: var(--font-ui); padding: 0; white-space: nowrap; }
+  .brand::before { content: "◐ "; color: var(--lamp); }
+
+  /* Navigation & Menu Styles */
+  .nav-menu { display: flex; gap: 4px; align-items: center; flex-wrap: wrap; }
+  
+  .nav-menu button, .nav-menu .dropdown > button {
+    font-family: var(--font-ui); font-size: 0.82rem; background: none;
+    border: none; color: var(--ink); opacity: 0.7; cursor: pointer;
+    padding: 5px 8px; border-radius: 4px; transition: opacity 0.2s;
+    white-space: nowrap;
+  }
+  .nav-menu button:hover, .nav-menu button.active, .nav-menu .dropdown > button.active { opacity: 1; color: var(--lamp-deep); }
+  
+  .dropdown { position: relative; display: inline-block; }
+  .dropdown-content {
+    display: none; position: absolute; right: 0; background-color: var(--paper);
+    min-width: 140px; box-shadow: 0px 8px 20px rgba(0,0,0,0.12); border: 1px solid var(--rule);
+    z-index: 200; border-radius: 6px; padding: 6px 0; margin-top: 4px;
+  }
+  .dropdown-content.show { display: block; }
+  .dropdown-content button {
+    width: 100%; text-align: left; padding: 8px 14px; display: block;
+    font-size: 0.85rem; opacity: 0.8; white-space: nowrap;
+  }
+  .dropdown-content button:hover { background-color: var(--paper-dim); opacity: 1; color: var(--lamp-deep); }
+
+  main { max-width: 1100px; margin: 0 auto; padding: 0 24px 80px; }
+  section.view { display: none; }
+  section.view.active { display: block; }
+
+  /* Index / Hero - Default style */
+  .hero { padding: 40px 0 20px; }
+  .hero h1 {
+    font-family: var(--font-body); font-style: italic; font-weight: 600;
+    font-size: clamp(2rem, 6vw, 2.9rem); margin: 0 0 10px; line-height: 1.15;
+  }
+  .hero p.deck { font-family: var(--font-ui); font-size: 1.05rem; opacity: 0.75; max-width: 46ch; margin: 0 0 28px; }
+
+  /* Multi-column grid layout */
+  .image-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+    margin-top: 24px;
+  }
+
+  @media (min-width: 640px) {
+    .image-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .image-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .hero {
+      text-align: left;
+    }
+    .hero h1, .hero p.deck {
+      text-align: left;
+      margin-left: 0;
+      margin-right: auto;
+    }
+  }
+
+  .grid-item {
+    background: var(--paper-dim);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .grid-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  }
+
+  .grid-item img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .card-actions {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: var(--paper);
+    border-top: 1px solid var(--rule);
+  }
+
+  .card-actions button {
+    width: 100%;
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+  }
+
+  .btn-view {
+    background: transparent;
+    border: 1px solid var(--rule);
+    color: var(--ink);
+  }
+  .btn-view:hover {
+    background: var(--paper-dim);
+    border-color: var(--ink);
+  }
+
+  .btn-read {
+    background: var(--lamp-deep);
+    border: 1px solid var(--lamp-deep);
+    color: #fff;
+  }
+  .btn-read:hover {
+    background: var(--lamp);
+    border-color: var(--lamp);
+  }
+
+  /* Modal for Centered Image View */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal.show { display: flex; }
+  .modal-content {
+    max-width: 90%;
+    max-height: 85vh;
+    border-radius: 6px;
+    border: 1px solid var(--rule);
+    object-fit: contain;
+  }
+  .close-modal {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #fff;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    background: none;
+    border: none;
+  }
+
+  .toc { border-top: 1px solid var(--rule); margin-top: 32px; }
+  .toc-item {
+    display: flex; gap: 18px; align-items: baseline; padding: 22px 0;
+    border-bottom: 1px solid var(--rule); cursor: pointer; background: none; border-left: none; border-right: none; border-top: none;
+    width: 100%; text-align: left; color: var(--ink); font-family: var(--font-body);
+  }
+  .toc-item .num { font-family: var(--font-ui); color: var(--lamp-deep); font-size: 0.85rem; min-width: 2ch; padding-top: 3px; }
+  .toc-item .txt h3 { margin: 0 0 4px; font-size: 1.25rem; font-weight: 600; }
+  .toc-item .txt p { margin: 0; opacity: 0.65; font-size: 0.95rem; font-family: var(--font-ui); }
+
+  /* Reader */
+  .reader { padding: 44px 0 0; max-width: 720px; margin: 0 auto; }
+  .reader .kicker { font-family: var(--font-ui); font-size: 0.85rem; color: var(--lamp-deep); margin: 0 0 6px; }
+  .reader h2 { font-style: italic; font-size: clamp(1.6rem, 5vw, 2.1rem); margin: 0 0 28px; }
+  .reader p { font-size: 1.08rem; margin: 0 0 1.2em; }
+  .reader p:first-of-type::first-letter {
+    font-family: var(--font-body); font-style: italic; font-size: 3.1em; float: left;
+    line-height: 0.8; padding: 0.05em 0.08em 0 0; color: var(--lamp-deep);
+  }
+  .end-mark { text-align: center; color: var(--lamp); margin: 40px 0 8px; }
+  .pager {
+    display: flex; justify-content: space-between; margin-top: 24px;
+    padding-top: 20px; border-top: 1px solid var(--rule); font-family: var(--font-ui);
+  }
+  .pager button {
+    background: none; border: none; color: var(--ink); cursor: pointer;
+    font-family: var(--font-ui); font-size: 0.95rem; padding: 6px 0;
+  }
+  .pager button:disabled { opacity: 0.25; cursor: default; }
+  .pager .next { color: var(--lamp-deep); }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="bar">
+    <button class="brand" onclick="go('index')">Infinite Shelf</button>
+    <nav class="nav-menu">
+      <button class="nav-link" data-nav="index" onclick="go('index')">Home</button>
+      <button class="nav-link" data-nav="platform" onclick="go('index')">Platform</button>
+      <button class="nav-link" data-nav="contact" onclick="go('index')">Contact</button>
+      <div class="dropdown">
+        <button id="nav-stories" onclick="toggleDropdown(event)">Stories ▾</button>
+        <div class="dropdown-content" id="storiesDropdown">
+          <button data-target="ch1" onclick="go('ch1')">The Lamp</button>
+          <button data-target="ch2" onclick="go('ch2')">The Girl</button>
+          <button data-target="ch3" onclick="go('ch3')">What the</button>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="view active" id="view-index">
+    <div class="hero">
+      <h1>CURIOVERSE</h1>
+      <p class="deck">A short story in three parts, about a lighthouse that keeps its own time, the girl who counts its waves, and the fog that never quite forgets.</p>
+      
+      <!-- Multi-column grid layout with View and Read Story buttons -->
+      <div class="image-grid">
+        <div class="grid-item">
+          <img src="5.jpg" alt="Curioverse Preview 1">
+          <div class="card-actions">
+            <button class="btn-view" onclick="openModal('5.jpg')">View Image</button>
+            <button class="btn-read" onclick="go('ch1')">Read Story</button>
+          </div>
+        </div>
+        <div class="grid-item">
+          <img src="1.jpg" alt="Curioverse Preview 2">
+          <div class="card-actions">
+            <button class="btn-view" onclick="openModal('1.jpg')">View Image</button>
+            <button class="btn-read" onclick="go('ch1')">Read Story</button>
+          </div>
+        </div>
+        <div class="grid-item">
+          <img src="1.jpg" alt="Curioverse Preview 3">
+          <div class="card-actions">
+            <button class="btn-view" onclick="openModal('1.jpg')">View Image</button>
+            <button class="btn-read" onclick="go('ch1')">Read Story</button>
+          </div>
+        </div>
+        <div class="grid-item">
+          <img src="1.jpg" alt="Curioverse Preview 4">
+          <div class="card-actions">
+            <button class="btn-view" onclick="openModal('1.jpg')">View Image</button>
+            <button class="btn-read" onclick="go('ch1')">Read Story</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="toc" id="tocList"></div>
+  </section>
+
+  <!-- Chapter templates -->
+  <section class="view" id="view-ch1">
+    <div class="reader">
+      <p class="kicker">Chapter One</p>
+      <h2>IKAW ANG NAKARAAN KO IKAW RIN ANG HINAHARAP KO  </h2>
+	  
+        <p>
+		Hindi ko alam kung anong oras na ngunit gusto ko nang matapos ito, kanina pa ako nag balanse ngunit hindi ko ma close ang transaction ko, 
+		Ano ba kasing kulanggg? hayyst. sumakit na ang ulo ko hinihilot ko ang ulo ko (saglit) dahil parang sumasabog na'ra kakaisip.
+		Ako nga pala si Jessel Luinzo Fuertez, 00 alam ko na ang sasabihin nyo ang haba nang pangalan ko but, inshort call me Jess nalang para hindi na 
+		kayo mahirapan tulad nitong transaction ko na ang sarap.... ipokpok nitong computer nato mag alas-8 na nang gabi nadamay tuloy itong kasama ko na
+		si Rina Prez isa din itong teller tulad ko.
+		"hindi ka talaga matapos niyan beshy kasi ang isang expense na papel ay nasa sahig" sambit nito sa akin.
+		"shocks! andito ka lang pala! pinahirapan mo pa ako ha! 10 pesos lang naman palang kulang isang ballpen na expense lang! pupunitin ko na sana, dahil uminit ang ulo ko bigla."
+		"Oh beshy! huwag maawa ka uwing-uwi na ako attachement natin yan, huwag mong punitin" sambit nito.
+		</p>
+		
+      <p class="end-mark">◐</p>
+    </div>
+	
+    <div class="pager">
+      <button onclick="go('index')">&larr; Index</button>
+      <button class="next" onclick="go('ch2')">Chapter Two &rarr;</button>
+    </div>
+  </section>
+  
+
+  <section class="view" id="view-ch2">
+    <div class="reader">
+      <p class="kicker">Chapter Two</p>
+      <p>
+		sa akin.   at nang alas noybe na nang gabi natapos naglalakad na ako sa may convenience store para bumili nang pagkain, nang paglabas ko may nakita 
+		akong matanda na naka upo lamang at parang nagugutom ito, at wala man lang nagbigay nito, kaya nilapitan ko at binigyan nang pagkain dahil sa naawa ako nito. 
+		Maraming salamat eneng ha, gutom na talaga ako wala man lang nagbigay sa akin dito sambit nang matanda.   lola asan ba kasi ang pamilya mo? sat tanong ko nita 
+		para ihatid ko sana ito sa bahay niya nang biglang may taxi na umorong sa harapan namin.   Ma'am asan punta nyo? last byahe ko na ito dahil uwi na rin ako, wala 
+		na pong gaanong taxi ngayong oras na ma'am sambit nito sa akin.   pasakay po manong ngunit ihatid muna natin si lola nang pagtingin ko sa likod wala na ang matanda,
+		teka andito lang siya kanina eh, sambit ko sa sarili ko, nang nagtataka. 
+		</p>
+      <p class="end-mark">◐</p>
+    </div>
+	
+	
+	
+	<div class="pager">
+      <button onclick="go('ch1')">&larr; Previous</button>
+      <button class="next" onclick="go('ch3')">Chapter Three &rarr;</button>
+    </div>
+  </section>
+	
+	
+	
+	
+	
+     <section class="view" id="view-ch3">
+    <div class="reader">
+      <p class="kicker">Chapter Three</p>
+	  
+		<p>
+		Ma'am wala po akong nakitang matanda kanina, sabi nito sa akin.   hindi andito talaga sya kanina manong binigyan ko pa nga nang pagkain,
+		bigla tuloy nag taasan ang balhibo ko kaya dali-dali ako sumakay ng taxi.   Araw-araw ganun ang routine nang buhay ko, gabi na maka uwi ng bahay at maagang papasok sa banko.
+		Anak tumatanda kana, wala ka parin boyfriend wala ka man lang naipakilala sa akin ni isa man lang sambit nang mama ko. 
+		Si mama nalang ang natitira sa akin, wala na ang papa ko dahil sa sakit, kaya ibibigay ko lahat para kay mama, wala rin kasi akong kapatid.  
+		Mama ikaw muna uunahin ko saka na yang boyfriend na yan, wala pa akong plano sa ganyan, sambit ko kay mama.  
+		Meron naman nanligaw sa akin pero wala pa talaga sa isipan ko ang mga ganon. 
+		</p>	
+      <p class="end-mark">◐ ◐ ◐</p>
+	  </div>
+	  
+	  
+	<div class="pager">
+      <button onclick="go('ch2')">&larr; Previous</button>
+      <button class="next" onclick="go('ch4')">Chapter Four &rarr;</button>
+    </div>
+  </section>
+	  
+	  
+	  
+
+	  
+	  
+	  
+	  <section class="view" id="view-ch4">
+    <div class="reader">
+      <p class="kicker">Chapter Four</p>
+      
+		<p>
+		Anak 26 years old kana, bigyan mo na ako nang apo kasi, nang may aalagaan naman ako dito, sabi ni mama sa akin.   Mama meron kanamang apo ay... lima pa nga iyan.... 
+		Anong apo na sinasabi mo? itong mga apat na paa? pambihira ka talaga Jess sambit ni mama.   buhakhak naman akong tumawa at hinimas-himas ang mga alaga kong aso na puro doberman,
+		mahilig talaga ako sa aso, kaya hindi ako gaano malungkot at napaka clingy pa nang mga baby ko..   Cut off month na, ito ang pinaka ayaw ko dahil kailangan ma close ang transaction namin mula umpisa, natapos kami nang alas 10 da nang gabi at pumunta 
+		ulit ako nang convience store dahil nagugutom ako nang makita ko ulit ang matanda nilapitan ko. ito....   lola andito ka ulit? at binigyan ko ito nang pagkain,.   salamat eneng apaka bait mo talaga tulad ka parin nang dati sambit nito saakin.   
+		</p>
+		
+      <p class="end-mark">◐ ◐ ◐ ◐</p>
+	  </div>
+	  
+	  <div class="pager">
+      <button onclick="go('ch3')">&larr; Previous</button>
+      <button class="next" onclick="go('ch4')">Chapter Four &rarr;</button>
+    </div>
+  </section>
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	   <section class="view" id="view-ch3">
+    <div class="reader">
+      <p class="kicker">Chapter Five</p>
+      
+		<p>
+			dati po? kumonot ang noo ko, pangalawang beses palang nating pagkikita lola sabi ko nito at ngumisi lang ito sa akin.  
+		 lola saan ka ba kasi naka tira ihahatid na po kita, gabi na at delekado lola, nong isang araw nagkita tayo bigla ka lang nawala sabi ko nito.   
+		 Huwag kang mag alala sa akin eneng, alalahanin mo ang sarili mo, binigyan sabi nito ra akin at may binigay ito sa akin isang coins.
+		 salamat at napaka bait mo parin sa akin eneng ito lang ang maibibigay ko rayo, itago mo sana ito at huwag iwawala malalaman mo rin ang kasagutan nito. sabi nang matanda sa akin.
+		 Nang may taxi ulit na huminto, miss rasakay ka? tanong nito ra akin at umuo agad ako nang pagtingin ko ulit sa likod nawala ulit ang matanda.   
+		 tuloy bigla tumaas ang balhibo nang katawan ko, nakaka kita ba ako nang multo? tanong ko sa isipan, pero hindi eh, ito ang kauna.   
+		</p>
+		
+      <p class="end-mark">◐ ◐ ◐</p>
+	  </div> 
+	  
+	  
+	  
+	   
+	   <section class="view" id="view-ch3">
+    <div class="reader">
+      <p class="kicker">Chapter Sixth</p>
+	  
+      
+		<p>
+				Unahan kong makakita at matanda pa ang creepy naman non.   tinignan ko ang binigay nang matanda, isang lumang piso at ang nakalagay na year ay 1989, pero bakit parang napaka halaga nito sa akin, 
+		bakit parang conectado ito sa buhay ko, bakit parang bumibigat ang pakiramdam ko na parang may kirot sa puso ko na hindi ko maintindihan, anong kasagutan ang sinasabi sa akin ni lola? haay ang daming tanong sa isipan ko, wala man lang akong sagot.   
+		Pagdating ko sa bahay natulog na agad ako, napagod ako sa trabaho pati ang otako ko pagod narin sa kakaisip, hindi ko na nakain ang binili ko, at nang kalahating gabi nanaginip ako na may kahawak ako kamay ngunit hindi ko makita ang mukha nito.
+		Mahal na mahal kita sobra, ikaw ang nagbibigay ligaya sa buhay ko, hinding hindi kita kayang iwan kahit ano man ang mangyari sabi nito sa akin ngunit hindi ko parin kita ang mukha nito. </p>
+		</p>
+		
+      <p class="end-mark">◐ ◐ ◐</p>
+	  </div> 
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	   <section class="view" id="view-ch3">
+    <div class="reader">
+      <p class="kicker">Chapter 101</p>
+	  
+	  
+	  <p>
+		Ma'am wala po akong nakitang matanda kanina, sabi nito sa akin.   hindi andito talaga sya kanina manong binigyan ko pa nga nang pagkain,
+		bigla tuloy nag taasan ang balhibo ko kaya dali-dali ako sumakay ng taxi.   Araw-araw ganun ang routine nang buhay ko, gabi na maka uwi ng bahay at maagang papasok sa banko.
+		Anak tumatanda kana, wala ka parin boyfriend wala ka man lang naipakilala sa akin ni isa man lang sambit nang mama ko. 
+		Si mama nalang ang natitira sa akin, wala na ang papa ko dahil sa sakit, kaya ibibigay ko lahat para kay mama, wala rin kasi akong kapatid.  
+		Mama ikaw muna uunahin ko saka na yang boyfriend na yan, wala pa akong plano sa ganyan, sambit ko kay mama.  
+		Meron naman nanligaw sa akin pero wala pa talaga sa isipan ko ang mga ganon. 
+		</p>
+		
+      <p class="end-mark">◐ ◐ ◐</p>
+      <p style="font-family: var(--font-ui); font-size: 0.85rem; opacity: 0.55; margin-top: 8px;">End.</p>
+    </div>
+    <div class="pager">
+      <button onclick="go('ch2')">&larr; Chapter Two</button>
+      <button class="next" onclick="go('index')">Back to Index &rarr;</button>
+    </div>
+  </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</main>
+
+<!-- Modal Container for View Image -->
+<div class="modal" id="imageModal" onclick="closeModal()">
+  <button class="close-modal" onclick="closeModal()">&times;</button>
+  <img class="modal-content" id="modalImg" alt="Centered Preview">
+</div>
+
+<script>
+
+  const tocList = document.getElementById('tocList');
+  chapters.forEach((c, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'toc-item';
+    btn.onclick = () => go(c.id);
+    btn.innerHTML = `<span class="num">0${i+1}</span><span class="txt"><h3>${c.title}</h3></span>`;
+    tocList.appendChild(btn);
+  });
+
+  function toggleDropdown(event) {
+    event.stopPropagation();
+    document.getElementById("storiesDropdown").classList.toggle("show");
+  }
+
+  function openModal(src) {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImg');
+    modalImg.src = src;
+    modal.classList.add('show');
+  }
+
+  function closeModal() {
+    document.getElementById('imageModal').classList.remove('show');
+  }
+
+  // Close dropdown when clicking anywhere else
+  window.onclick = function(event) {
+    if (!event.target.matches('#nav-stories')) {
+      const dropdowns = document.getElementsByClassName("dropdown-content");
+      for (let i = 0; i < dropdowns.length; i++) {
+        let openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
+  }
+
+  function go(id) {
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    document.getElementById('view-' + id).classList.add('active');
+    
+    document.querySelectorAll('.nav-link').forEach(b => {
+      b.classList.toggle('active', id === 'index' && b.dataset.nav === 'index');
+    });
+    document.getElementById('nav-stories').classList.toggle('active', id !== 'index');
+    
+    document.querySelectorAll('.dropdown-content button').forEach(b => {
+      b.classList.toggle('active', b.dataset.target === id);
+    });
+
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    try { localStorage.setItem('khl-last-view', id); } catch (e) {}
+  }
+
+  try {
+    const last = localStorage.getItem('khl-last-view');
+    if (last && document.getElementById('view-' + last)) go(last);
+  } catch (e) {}
+</script>
+
+</body>
+</html>
