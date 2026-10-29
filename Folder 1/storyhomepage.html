@@ -1,0 +1,1324 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Stories & Beyond | Real Stories, Fiction & Learning</title>
+
+<meta name="description" content="Discover real-life experiences, fictional adventures, inspiring stories, and fascinating knowledge at Stories & Beyond.">
+
+<style>
+/* =====================================================
+   GLOBAL SETTINGS
+===================================================== */
+
+:root {
+    --bg: #080b12;
+    --bg-soft: #101521;
+    --card: #121a28;
+    --gold: #d4af37;
+    --gold-light: #f0d77a;
+    --white: #f5f5f5;
+    --muted: #a8b0bf;
+    --border: rgba(255,255,255,0.10);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bg);
+    color: var(--white);
+    line-height: 1.6;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    display: block;
+    width: 100%;
+}
+
+button {
+    font: inherit;
+}
+
+.container {
+    width: min(1160px, 90%);
+    margin: auto;
+}
+
+.section {
+    padding: 90px 0;
+}
+
+.section-heading {
+    max-width: 680px;
+    margin-bottom: 35px;
+}
+
+.section-heading .eyebrow {
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.section-heading h2 {
+    font-size: clamp(28px, 4vw, 42px);
+    line-height: 1.2;
+    margin-bottom: 15px;
+}
+
+.section-heading p {
+    color: var(--muted);
+    font-size: 15px;
+}
+
+.gold {
+    color: var(--gold);
+}
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(8, 11, 18, 0.94);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+}
+
+.navbar {
+    min-height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+.logo span {
+    color: var(--gold);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.nav-links a {
+    color: #d7dce5;
+    font-size: 13px;
+    transition: color 0.25s;
+}
+
+.nav-links a:hover {
+    color: var(--gold);
+}
+
+.nav-button {
+    border: 1px solid var(--gold);
+    color: var(--gold) !important;
+    padding: 10px 17px;
+    border-radius: 3px;
+}
+
+.nav-button:hover {
+    background: var(--gold);
+    color: #080b12 !important;
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: 1px solid var(--border);
+    color: white;
+    padding: 7px 11px;
+    cursor: pointer;
+    font-size: 22px;
+}
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+    min-height: 620px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background:
+        linear-gradient(90deg, rgba(8,11,18,0.98) 0%,
+        rgba(8,11,18,0.83) 55%,
+        rgba(8,11,18,0.58) 100%),
+        url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=2000&q=85")
+        center/cover no-repeat;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 150px;
+    background: linear-gradient(transparent, var(--bg));
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+    padding: 100px 0 130px;
+}
+
+.hero-label {
+    display: inline-block;
+    color: var(--gold-light);
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: clamp(40px, 7vw, 76px);
+    line-height: 1.05;
+    letter-spacing: -2px;
+    margin-bottom: 24px;
+}
+
+.hero h1 span {
+    color: var(--gold);
+}
+
+.hero p {
+    max-width: 580px;
+    color: #d1d5df;
+    font-size: 17px;
+    margin-bottom: 32px;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 13px 23px;
+    border: 1px solid var(--gold);
+    border-radius: 3px;
+    font-size: 13px;
+    font-weight: bold;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: var(--gold);
+    color: #101010;
+}
+
+.btn-primary:hover {
+    background: var(--gold-light);
+    border-color: var(--gold-light);
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    color: var(--white);
+    border-color: rgba(255,255,255,0.35);
+}
+
+.btn-outline:hover {
+    color: var(--gold);
+    border-color: var(--gold);
+}
+
+/* =====================================================
+   INTRO STRIP
+===================================================== */
+
+.intro-strip {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: #0c111b;
+}
+
+.intro-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.intro-item {
+    padding: 28px 24px;
+    border-right: 1px solid var(--border);
+}
+
+.intro-item:first-child {
+    border-left: 1px solid var(--border);
+}
+
+.intro-item h3 {
+    font-size: 16px;
+    margin-bottom: 6px;
+}
+
+.intro-item p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* =====================================================
+   STORY CARDS
+===================================================== */
+
+.story-section {
+    background: var(--bg);
+}
+
+.story-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 25px;
+}
+
+.story-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+}
+
+.story-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(212,175,55,0.65);
+}
+
+.story-image {
+    height: 220px;
+    overflow: hidden;
+    background: #182131;
+}
+
+.story-image img {
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.story-card:hover .story-image img {
+    transform: scale(1.05);
+}
+
+.story-content {
+    padding: 23px;
+}
+
+.story-tag {
+    display: inline-block;
+    color: var(--gold);
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.story-content h3 {
+    font-size: 19px;
+    line-height: 1.35;
+    margin-bottom: 12px;
+}
+
+.story-content p {
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 18px;
+}
+
+.read-link {
+    color: var(--gold-light);
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.read-link:hover {
+    text-decoration: underline;
+}
+
+/* =====================================================
+   CATEGORY DIVIDER
+===================================================== */
+
+.category-heading {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin: 55px 0 25px;
+}
+
+.category-heading h3 {
+    font-size: 22px;
+    white-space: nowrap;
+}
+
+.category-heading p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.category-line {
+    height: 1px;
+    flex: 1;
+    background: var(--border);
+}
+
+/* =====================================================
+   LEARNING SECTION
+===================================================== */
+
+.learning-section {
+    background: var(--bg-soft);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.learning-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.learning-card {
+    min-height: 210px;
+    padding: 28px;
+    background: #111927;
+    border: 1px solid var(--border);
+    transition: 0.3s;
+}
+
+.learning-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-4px);
+}
+
+.learning-icon {
+    width: 45px;
+    height: 45px;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(212,175,55,0.45);
+    color: var(--gold);
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.learning-card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.learning-card p {
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 17px;
+}
+
+/* =====================================================
+   SUBMIT STORY CTA
+===================================================== */
+
+.submit-section {
+    padding: 85px 0;
+}
+
+.submit-panel {
+    position: relative;
+    overflow: hidden;
+    padding: 55px;
+    border: 1px solid rgba(212,175,55,0.35);
+    background:
+        radial-gradient(circle at 100% 0%,
+        rgba(212,175,55,0.14), transparent 40%),
+        #101521;
+}
+
+.submit-panel h2 {
+    max-width: 650px;
+    font-size: clamp(28px, 4vw, 42px);
+    line-height: 1.2;
+    margin-bottom: 18px;
+}
+
+.submit-panel p {
+    max-width: 600px;
+    color: var(--muted);
+    margin-bottom: 25px;
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer {
+    background: #05070c;
+    border-top: 1px solid var(--border);
+    padding: 45px 0 25px;
+}
+
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 35px;
+    flex-wrap: wrap;
+    padding-bottom: 35px;
+}
+
+.footer-description {
+    max-width: 370px;
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 14px;
+}
+
+.footer-links h3 {
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.footer-links a {
+    display: block;
+    color: var(--muted);
+    font-size: 12px;
+    margin-bottom: 9px;
+}
+
+.footer-links a:hover {
+    color: var(--gold);
+}
+
+.footer-bottom {
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    color: #7f8999;
+    font-size: 11px;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* =====================================================
+   RESPONSIVE DESIGN
+===================================================== */
+
+@media (max-width: 900px) {
+    .story-grid,
+    .learning-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .nav-links {
+        gap: 17px;
+    }
+
+    .nav-links a {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 700px) {
+    .section {
+        padding: 65px 0;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .navbar {
+        min-height: 68px;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 68px;
+        left: 0;
+        right: 0;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 10px 5%;
+        background: #0a0e17;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links a {
+        padding: 14px 0;
+        font-size: 14px;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .nav-links .nav-button {
+        text-align: center;
+        margin: 12px 0;
+        padding: 12px;
+    }
+
+    .hero {
+        min-height: 570px;
+        background-position: 58% center;
+    }
+
+    .hero-content {
+        padding: 85px 0 110px;
+    }
+
+    .hero h1 {
+        letter-spacing: -1px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+    .intro-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .intro-item,
+    .intro-item:first-child {
+        border-left: 1px solid var(--border);
+        border-right: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+    }
+
+    .story-grid,
+    .learning-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .story-image {
+        height: 230px;
+    }
+
+    .category-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 7px;
+    }
+
+    .category-heading h3 {
+        white-space: normal;
+    }
+
+    .category-line {
+        width: 100%;
+        flex: none;
+    }
+
+    .submit-panel {
+        padding: 32px 24px;
+    }
+
+    .footer-top {
+        flex-direction: column;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+    <div class="container navbar">
+
+        <a href="#home" class="logo">
+            STORIES <span>& BEYOND</span>
+        </a>
+
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+            aria-controls="navLinks">
+            ☰
+        </button>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="#home">Home</a>
+            <a href="#stories">Stories</a>
+            <a href="#fiction">Fiction</a>
+            <a href="#learning">Learning</a>
+            <a href="user.html" class="nav-button">Share a Story</a>
+        </nav>
+
+    </div>
+</header>
+
+<main>
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero" id="home">
+    <div class="container">
+
+        <div class="hero-content">
+
+            <span class="hero-label">
+                Every Story Has a Beginning
+            </span>
+
+            <h1>
+                Stories That Move Us.<br>
+                <span>Worlds That Inspire.</span>
+            </h1>
+
+            <p>
+                Explore real-life experiences, imaginative fiction,
+                unforgettable adventures, and fascinating knowledge.
+                Every page offers something new to discover.
+            </p>
+
+            <div class="hero-actions">
+                <a href="#stories" class="btn btn-primary">
+                    Explore Stories
+                </a>
+
+                <a href="#learning" class="btn btn-outline">
+                    Discover Knowledge
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- =====================================================
+     INTRO STRIP
+===================================================== -->
+
+<section class="intro-strip">
+    <div class="container intro-grid">
+
+        <div class="intro-item">
+            <h3>Real-Life Experiences</h3>
+            <p>Discover personal journeys, challenges, and lessons.</p>
+        </div>
+
+        <div class="intro-item">
+            <h3>Fictional Worlds</h3>
+            <p>Enter imaginative worlds filled with mystery and adventure.</p>
+        </div>
+
+        <div class="intro-item">
+            <h3>Knowledge & Discovery</h3>
+            <p>Explore topics that encourage curiosity and learning.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- =====================================================
+     STORIES SECTION
+===================================================== -->
+
+<section class="section story-section" id="stories">
+    <div class="container">
+
+        <div class="section-heading">
+            <p class="eyebrow">Featured Stories</p>
+
+            <h2>
+                Every Journey Has a <span class="gold">Story</span>
+            </h2>
+
+            <p>
+                Discover true experiences, imaginative fiction,
+                unforgettable adventures, and inspiring lessons.
+                Explore different perspectives and stories that stay with you.
+            </p>
+        </div>
+
+        <div class="story-grid">
+
+            <!-- REAL-LIFE STORY 1 -->
+
+            <article class="story-card">
+                <div class="story-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=900&q=80"
+                        alt="Mountain landscape at sunrise"
+                        loading="lazy">
+                </div>
+
+                <div class="story-content">
+                    <span class="story-tag">Real-Life Story</span>
+
+                    <h3>The Courage to Begin Again</h3>
+
+                    <p>
+                        A personal journey about facing setbacks,
+                        learning from difficult moments, and finding
+                        the courage to move forward.
+                    </p>
+
+                    <a href="stories/courage-to-begin-again.html"
+                       class="read-link">
+                        Read Story →
+                    </a>
+                </div>
+            </article>
+
+            <!-- REAL-LIFE STORY 2 -->
+
+            <article class="story-card">
+                <div class="story-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=900&q=80"
+                        alt="Family spending time together"
+                        loading="lazy">
+                </div>
+
+                <div class="story-content">
+                    <span class="story-tag">Family & Life</span>
+
+                    <h3>The Moments That Matter Most</h3>
+
+                    <p>
+                        A reflection on family, time, sacrifice,
+                        and the simple moments that can mean
+                        more than material things.
+                    </p>
+
+                    <a href="stories/moments-that-matter.html"
+                       class="read-link">
+                        Read Story →
+                    </a>
+                </div>
+            </article>
+
+            <!-- REAL-LIFE STORY 3 -->
+
+            <article class="story-card">
+                <div class="story-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80"
+                        alt="Workspace with a laptop and notebook"
+                        loading="lazy">
+                </div>
+
+                <div class="story-content">
+                    <span class="story-tag">Personal Growth</span>
+
+                    <h3>Learning Beyond the Classroom</h3>
+
+                    <p>
+                        An exploration of how curiosity, consistent
+                        practice, and real-world experience can
+                        help someone develop new skills.
+                    </p>
+
+                    <a href="stories/learning-beyond-classroom.html"
+                       class="read-link">
+                        Read Story →
+                    </a>
+                </div>
+            </article>
+
+        </div>
+
+        <!-- FICTIONAL STORIES -->
+
+        <div class="category-heading" id="fiction">
+            <h3>Enter the World of Fiction</h3>
+            <div class="category-line"></div>
+            <p>Imagine what could be beyond reality.</p>
+        </div>
+
+        <div class="story-grid">
+
+            <!-- FICTION 1 -->
+
+            <article class="story-card">
+                <div class="story-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=900&q=80"
+                        alt="Stars and a colorful galaxy in space"
+                        loading="lazy">
+                </div>
+
+                <div class="story-content">
+                    <span class="story-tag">Fantasy & Adventure</span>
+
+                    <h3>The Kingdom Beyond the Stars</h3>
+
+                    <p>
+                        In a forgotten kingdom beyond the known universe,
+                        a young traveler discovers a secret that could
+                        change the fate of two worlds.
+                    </p>
+
+                    <a href="stories/kingdom-beyond-stars.html"
+                       class="read-link">
+                        Read Fiction →
+                    </a>
+                </div>
+            </article>
+
+            <!-- FICTION 2 -->
+
+            <article class="story-card">
+                <div class="story-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=900&q=80"
+                        alt="A mysterious night sky above a landscape"
+                        loading="lazy">
+                </div>
+
+                <div class="story-content">
+                    <span class="story-tag">Mystery & Thriller</span>
+
+                    <h3>The House at the End of the Road</h3>
+
+                    <p>
+                        A quiet town hides a strange secret.
+                        When a visitor enters an abandoned house,
+                        the answers only lead to more questions.
+                    </p>
+
+                    <a href="stories/house-end-of-road.html"
+                       class="read-link">
+                        Read Fiction →
+                    </a>
+                </div>
+            </article>
+
+            <!-- FICTION 3 -->
+
+            <article class="story-card">
+                <div class="story-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=900&q=80"
+                        alt="Earth viewed from space"
+                        loading="lazy">
+                </div>
+
+                <div class="story-content">
+                    <span class="story-tag">Science Fiction</span>
+
+                    <h3>The Last Signal from Earth</h3>
+
+                    <p>
+                        Far from home, a space explorer receives
+                        a signal that should not exist and must
+                        decide whether to follow it.
+                    </p>
+
+                    <a href="stories/last-signal-earth.html"
+                       class="read-link">
+                        Read Fiction →
+                    </a>
+                </div>
+            </article>
+
+            <!-- FICTION 4 -->
+
+            <article class="story-card">
+                <div class="story-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=900&q=80"
+                        alt="Golden sunlight across a peaceful landscape"
+                        loading="lazy">
+                </div>
+
+                <div class="story-content">
+                    <span class="story-tag">Romance & Drama</span>
+
+                    <h3>The Letters We Never Sent</h3>
+
+                    <p>
+                        Years after life takes them in different
+                        directions, two old friends discover
+                        the letters they were once afraid to send.
+                    </p>
+
+                    <a href="story list.html"
+                       class="read-link">
+                        Read Fiction →
+                    </a>
+                </div>
+            </article>
+
+            <!-- FICTION 5 -->
+
+            <article class="story-card">
+                <div class="story-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=900&q=80"
+                        alt="Sunlight passing through a forest"
+                        loading="lazy">
+                </div>
+
+                <div class="story-content">
+                    <span class="story-tag">Fantasy</span>
+
+                    <h3>The Forest That Remembered</h3>
+
+                    <p>
+                        A young explorer enters a forest where
+                        every tree remembers the past and one
+                        forgotten memory holds the key to the future.
+                    </p>
+
+                    <a href="stories/forest-that-remembered.html"
+                       class="read-link">
+                        Read Fiction →
+                    </a>
+                </div>
+            </article>
+
+            <!-- FICTION 6 -->
+
+            <article class="story-card">
+                <div class="story-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=900&q=80"
+                        alt="Night sky filled with stars"
+                        loading="lazy">
+                </div>
+
+                <div class="story-content">
+                    <span class="story-tag">Short Story</span>
+
+                    <h3>The Man Who Borrowed Tomorrow</h3>
+
+                    <p>
+                        A mysterious stranger offers a man one
+                        chance to change tomorrow, but every
+                        choice comes with an unexpected cost.
+                    </p>
+
+                    <a href="stories/man-who-borrowed-tomorrow.html"
+                       class="read-link">
+                        Read Fiction →
+                    </a>
+                </div>
+            </article>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- =====================================================
+     LEARNING SECTION
+===================================================== -->
+
+<section class="section learning-section" id="learning">
+    <div class="container">
+
+        <div class="section-heading">
+            <p class="eyebrow">Explore & Learn</p>
+
+            <h2>
+                A World Worth <span class="gold">Discovering</span>
+            </h2>
+
+            <p>
+                Go beyond stories and explore informative topics
+                designed to spark curiosity, develop understanding,
+                and encourage lifelong learning.
+            </p>
+        </div>
+
+        <div class="learning-grid">
+
+            <article class="learning-card">
+                <div class="learning-icon">⌁</div>
+
+                <h3>Earth & Geology</h3>
+
+                <p>
+                    Discover rocks, minerals, volcanoes, natural
+                    landscapes, and the processes that shape our planet.
+                </p>
+
+                <a href="learning/earth-geology.html"
+                   class="read-link">
+                    Explore Topic →
+                </a>
+            </article>
+
+            <article class="learning-card">
+                <div class="learning-icon">✦</div>
+
+                <h3>Science & Space</h3>
+
+                <p>
+                    Explore the universe, scientific discoveries,
+                    planets, stars, and the mysteries of space.
+                </p>
+
+                <a href="learning/science-space.html"
+                   class="read-link">
+                    Explore Topic →
+                </a>
+            </article>
+
+            <article class="learning-card">
+                <div class="learning-icon">⌘</div>
+
+                <h3>Technology</h3>
+
+                <p>
+                    Learn about computers, software, digital tools,
+                    emerging technology, and how systems work.
+                </p>
+
+                <a href="learning/technology.html"
+                   class="read-link">
+                    Explore Topic →
+                </a>
+            </article>
+
+            <article class="learning-card">
+                <div class="learning-icon">◎</div>
+
+                <h3>History & Culture</h3>
+
+                <p>
+                    Discover historical events, cultural traditions,
+                    remarkable people, and civilizations.
+                </p>
+
+                <a href="learning/history-culture.html"
+                   class="read-link">
+                    Explore Topic →
+                </a>
+            </article>
+
+            <article class="learning-card">
+                <div class="learning-icon">↗</div>
+
+                <h3>Skills & Personal Growth</h3>
+
+                <p>
+                    Explore learning strategies, useful skills,
+                    practical ideas, and ways to improve yourself.
+                </p>
+
+                <a href="learning/personal-growth.html"
+                   class="read-link">
+                    Explore Topic →
+                </a>
+            </article>
+
+            <article class="learning-card">
+                <div class="learning-icon">◇</div>
+
+                <h3>World Discoveries</h3>
+
+                <p>
+                    Learn about interesting places, unusual facts,
+                    natural wonders, and discoveries from around the world.
+                </p>
+
+                <a href="learning/world-discoveries.html"
+                   class="read-link">
+                    Explore Topic →
+                </a>
+            </article>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- =====================================================
+     SUBMIT STORY SECTION
+===================================================== -->
+
+<section class="submit-section" id="submit">
+    <div class="container">
+
+        <div class="submit-panel">
+
+            <p class="eyebrow gold">Your Story Matters</p>
+
+            <h2>
+                Every Voice Has a Story Worth <span class="gold">Sharing</span>
+            </h2>
+
+            <p>
+                Have a personal experience, an inspiring journey,
+                or an original fictional story? Stories & Beyond
+                can become a place where different ideas and
+                perspectives find an audience.
+            </p>
+
+            <!-- Replace # with your real submission form URL later. -->
+            <a href="#" class="btn btn-primary"
+               onclick="alert('Story submissions are coming soon. Please check back later.'); return false;">
+                Submit Your Story
+            </a>
+
+        </div>
+
+    </div>
+</section>
+
+</main>
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+    <div class="container">
+
+        <div class="footer-top">
+
+            <div>
+                <a href="#home" class="logo">
+                    STORIES <span>& BEYOND</span>
+                </a>
+
+                <p class="footer-description">
+                    A place for real-life experiences, fictional
+                    adventures, and knowledge worth discovering.
+                    Explore a story. Discover a new perspective.
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <h3>Explore</h3>
+                <a href="#stories">Real-Life Stories</a>
+                <a href="#fiction">Fictional Stories</a>
+                <a href="#learning">Learning & Discovery</a>
+                <a href="user.html">Submit a Story</a>
+            </div>
+
+            <div class="footer-links">
+                <h3>Information</h3>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact</a>
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Use</a>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>
+                © <span id="currentYear"></span> Stories & Beyond.
+                All rights reserved.
+            </p>
+
+            <p>
+                Stories, ideas, and knowledge for curious minds.
+            </p>
+        </div>
+
+    </div>
+</footer>
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+/* Mobile navigation */
+
+menuToggle.addEventListener("click", function () {
+    const isOpen = navLinks.classList.toggle("active");
+
+    menuToggle.setAttribute("aria-expanded", isOpen);
+    menuToggle.setAttribute(
+        "aria-label",
+        isOpen ? "Close navigation menu" : "Open navigation menu"
+    );
+
+    menuToggle.textContent = isOpen ? "✕" : "☰";
+});
+
+/* Close mobile menu after selecting a navigation link */
+
+navLinks.querySelectorAll("a").forEach(function (link) {
+    link.addEventListener("click", function () {
+        navLinks.classList.remove("active");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open navigation menu");
+        menuToggle.textContent = "☰";
+    });
+});
+
+/* Automatically update the copyright year */
+
+document.getElementById("currentYear").textContent =
+    new Date().getFullYear();
+</script>
+
+</body>
+</html>

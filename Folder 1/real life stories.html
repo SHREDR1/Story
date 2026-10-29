@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Real-Life Stories | Stories & Beyond</title>
+
+<meta name="description" content="Discover personal journeys, challenges, reflections, and true life experiences at Stories & Beyond.">
+
+<style>
+/* =====================================================
+   GLOBAL SETTINGS
+===================================================== */
+
+:root {
+    --bg: #080b12;
+    --bg-soft: #101521;
+    --card: #121a28;
+    --gold: #d4af37;
+    --gold-light: #f0d77a;
+    --white: #f5f5f5;
+    --muted: #a8b0bf;
+    --border: rgba(255,255,255,0.10);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bg);
+    color: var(--white);
+    line-height: 1.6;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    display: block;
+    width: 100%;
+}
+
+button {
+    font: inherit;
+}
+
+.container {
+    width: min(1160px, 90%);
+    margin: auto;
+}
+
+.section {
+    padding: 60px 0 90px;
+}
+
+.section-heading {
+    max-width: 680px;
+    margin-bottom: 35px;
+}
+
+.section-heading .eyebrow {
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.section-heading h2 {
+    font-size: clamp(28px, 4vw, 42px);
+    line-height: 1.2;
+    margin-bottom: 15px;
+}
+
+.section-heading p {
+    color: var(--muted);
+    font-size: 15px;
+}
+
+.gold {
+    color: var(--gold);
+}
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(8, 11, 18, 0.94);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+}
+
+.navbar {
+    min-height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+.logo span {
+    color: var(--gold);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.nav-links a {
+    color: #d7dce5;
+    font-size: 13px;
+    transition: color 0.25s;
+}
+
+.nav-links a:hover {
+    color: var(--gold);
+}
+
+.nav-button {
+    border: 1px solid var(--gold);
+    color: var(--gold) !important;
+    padding: 10px 17px;
+    border-radius: 3px;
+}
+
+.nav-button:hover {
+    background: var(--gold);
+    color: #080b12 !important;
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: 1px solid var(--border);
+    color: white;
+    padding: 7px 11px;
+    cursor: pointer;
+    font-size: 22px;
+}
+
+/* =====================================================
+   PAGE HEADER BANNER
+===================================================== */
+
+.page-banner {
+    padding: 70px 0 40px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, #101521 0%, var(--bg) 100%);
+}
+
+.page-banner h1 {
+    font-size: clamp(32px, 5vw, 50px);
+    margin-bottom: 12px;
+}
+
+.page-banner p {
+    color: var(--muted);
+    font-size: 16px;
+    max-width: 600px;
+}
+
+/* =====================================================
+   STORY CARDS GRID
+===================================================== */
+
+.story-section {
+    background: var(--bg);
+}
+
+.story-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 25px;
+}
+
+.story-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+}
+
+.story-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(212,175,55,0.65);
+}
+
+.story-image {
+    height: 220px;
+    overflow: hidden;
+    background: #182131;
+}
+
+.story-image img {
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.story-card:hover .story-image img {
+    transform: scale(1.05);
+}
+
+.story-content {
+    padding: 23px;
+}
+
+.story-tag {
+    display: inline-block;
+    color: var(--gold);
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.story-content h3 {
+    font-size: 19px;
+    line-height: 1.35;
+    margin-bottom: 12px;
+}
+
+.story-content p {
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 18px;
+}
+
+.read-link {
+    color: var(--gold-light);
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.read-link:hover {
+    text-decoration: underline;
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer {
+    background: #05070c;
+    border-top: 1px solid var(--border);
+    padding: 45px 0 25px;
+}
+
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 35px;
+    flex-wrap: wrap;
+    padding-bottom: 35px;
+}
+
+.footer-description {
+    max-width: 370px;
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 14px;
+}
+
+.footer-links h3 {
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.footer-links a {
+    display: block;
+    color: var(--muted);
+    font-size: 12px;
+    margin-bottom: 9px;
+}
+
+.footer-links a:hover {
+    color: var(--gold);
+}
+
+.footer-bottom {
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    color: #7f8999;
+    font-size: 11px;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* =====================================================
+   RESPONSIVE DESIGN
+===================================================== */
+
+@media (max-width: 900px) {
+    .story-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .nav-links {
+        gap: 17px;
+    }
+
+    .nav-links a {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 700px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .navbar {
+        min-height: 68px;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 68px;
+        left: 0;
+        right: 0;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 10px 5%;
+        background: #0a0e17;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links a {
+        padding: 14px 0;
+        font-size: 14px;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .nav-links .nav-button {
+        text-align: center;
+        margin: 12px 0;
+        padding: 12px;
+    }
+
+    .story-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-top {
+        flex-direction: column;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+    <div class="container navbar">
+
+        <a href="storyhomepage.html" class="logo">
+            STORIES <span>& BEYOND</span>
+        </a>
+
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+            aria-controls="navLinks">
+            ☰
+        </button>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="storyhomepage.html">Home</a>
+            <a href="reallifegrid.html" style="color: var(--gold);">Real Stories</a>
+            <a href="storyhomepage.html#fiction">Fiction</a>
+            <a href="storyhomepage.html#learning">Learning</a>
+            <a href="user.html" class="nav-button">Share a Story</a>
+        </nav>
+
+    </div>
+</header>
+
+<main>
+
+<!-- =====================================================
+     BANNER SECTION
+===================================================== -->
+
+<section class="page-banner">
+    <div class="container">
+        <span class="section-heading"><span class="eyebrow">Category Archive</span></span>
+        <h1>Real-Life <span class="gold">Stories</span></h1>
+        <p>Explore personal accounts, life lessons, overcoming adversity, and genuine human reflections.</p>
+    </div>
+</section>
+
+<!-- =====================================================
+     STORIES GRID SECTION
+===================================================== -->
+
+<section class="section story-section">
+    <div class="container">
+
+        <div class="story-grid">
+
+            <!-- REAL-LIFE STORY 1 -->
+            <article class="story-card">
+                <div class="story-image">
+                    <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=900&q=80" alt="Mountain landscape at sunrise" loading="lazy">
+                </div>
+                <div class="story-content">
+                    <span class="story-tag">Real-Life Story</span>
+                    <h3>The Courage to Begin Again</h3>
+                    <p>A personal journey about facing setbacks, learning from difficult moments, and finding the courage to move forward.</p>
+                    <a href="stories/courage-to-begin-again.html" class="read-link">Read Story →</a>
+                </div>
+            </article>
+
+            <!-- REAL-LIFE STORY 2 -->
+            <article class="story-card">
+                <div class="story-image">
+                    <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=900&q=80" alt="Family spending time together" loading="lazy">
+                </div>
+                <div class="story-content">
+                    <span class="story-tag">Family & Life</span>
+                    <h3>The Moments That Matter Most</h3>
+                    <p>A reflection on family, time, sacrifice, and the simple moments that can mean more than material things.</p>
+                    <a href="stories/moments-that-matter.html" class="read-link">Read Story →</a>
+                </div>
+            </article>
+
+            <!-- REAL-LIFE STORY 3 -->
+            <article class="story-card">
+                <div class="story-image">
+                    <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80" alt="Workspace with a laptop and notebook" loading="lazy">
+                </div>
+                <div class="story-content">
+                    <span class="story-tag">Personal Growth</span>
+                    <h3>Learning Beyond the Classroom</h3>
+                    <p>An exploration of how curiosity, consistent practice, and real-world experience can help someone develop new skills.</p>
+                    <a href="stories/learning-beyond-classroom.html" class="read-link">Read Story →</a>
+                </div>
+            </article>
+
+            <!-- You can easily add more real-life story cards here following the exact same structure -->
+
+        </div>
+
+    </div>
+</section>
+
+</main>
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+    <div class="container">
+
+        <div class="footer-top">
+
+            <div>
+                <a href="storyhomepage.html" class="logo">
+                    STORIES <span>& BEYOND</span>
+                </a>
+                <p class="footer-description">
+                    A place for real-life experiences, fictional adventures, and knowledge worth discovering.
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <h3>Explore</h3>
+                <a href="reallifegrid.html">Real-Life Stories</a>
+                <a href="storyhomepage.html#fiction">Fictional Stories</a>
+                <a href="storyhomepage.html#learning">Learning & Discovery</a>
+                <a href="user.html">Submit a Story</a>
+            </div>
+
+            <div class="footer-links">
+                <h3>Information</h3>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact</a>
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Use</a>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© <span id="currentYear"></span> Stories & Beyond. All rights reserved.</p>
+            <p>Stories, ideas, and knowledge for curious minds.</p>
+        </div>
+
+    </div>
+</footer>
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+menuToggle.addEventListener("click", function () {
+    const isOpen = navLinks.classList.toggle("active");
+    menuToggle.setAttribute("aria-expanded", isOpen);
+    menuToggle.textContent = isOpen ? "✕" : "☰";
+});
+
+navLinks.querySelectorAll("a").forEach(function (link) {
+    link.addEventListener("click", function () {
+        navLinks.classList.remove("active");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.textContent = "☰";
+    });
+});
+
+document.getElementById("currentYear").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
