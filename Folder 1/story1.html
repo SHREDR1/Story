@@ -1,0 +1,1911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>The Courage to Begin Again | Stories & Beyond</title>
+
+    <style>
+        :root {
+            --bg: #080b12;
+            --card: #121a28;
+            --gold: #d4af37;
+            --white: #f5f5f5;
+            --muted: #a8b0bf;
+            --border: rgba(255,255,255,0.10);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--white);
+            font-family: Georgia, "Times New Roman", serif;
+            line-height: 1.8;
+        }
+
+        header {
+            padding: 25px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .container {
+            width: min(1100px, 94%);
+            margin: auto;
+        }
+
+        .brand {
+            color: var(--gold);
+            font-size: 18px;
+            letter-spacing: 2px;
+            text-decoration: none;
+        }
+
+        .story-header {
+            text-align: center;
+            padding: 65px 0 35px;
+        }
+
+        .category {
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: clamp(30px, 5vw, 46px);
+            line-height: 1.2;
+            margin-bottom: 18px;
+        }
+
+        .subtitle {
+            color: var(--muted);
+            font-size: 16px;
+        }
+
+        .chapter-title {
+            color: var(--gold);
+            font-size: 23px;
+            margin-top: 25px;
+        }
+
+        /* STORY IMAGE */
+
+        .story-image {
+            display: block;
+            width: 65%;
+            max-width: 550px;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin: 0 auto 40px;
+        }
+
+        /* STORY CONTENT */
+
+        .story-content {
+            width: 100%;
+            padding: 0 0 40px;
+        }
+
+        .story-content p {
+            color: #d5d9e2;
+            font-size: 17px;
+            margin-bottom: 25px;
+            text-align: justify;
+        }
+
+        h2 {
+            color: var(--gold);
+            font-size: 25px;
+            margin: 45px 0 18px;
+        }
+
+        blockquote {
+            border-left: 3px solid var(--gold);
+            background: var(--card);
+            padding: 25px;
+            margin: 35px 0;
+            color: var(--white);
+            font-style: italic;
+            font-size: 19px;
+        }
+
+        /* CHAPTER NAVIGATION */
+
+        .chapter-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin: 35px 0 65px;
+            padding-top: 25px;
+            border-top: 1px solid var(--border);
+        }
+
+        .chapter-button {
+            display: inline-block;
+            color: var(--gold);
+            text-decoration: none;
+            border: 1px solid var(--gold);
+            padding: 12px 25px;
+            transition: 0.3s;
+            cursor: pointer;
+            background: transparent;
+            font-family: Georgia, serif;
+            font-size: 15px;
+        }
+
+        .chapter-button:hover {
+            background: var(--gold);
+            color: #080b12;
+        }
+
+        /* CHAPTER DISPLAY */
+
+        .chapter {
+            display: none;
+        }
+
+        .chapter.active {
+            display: block;
+        }
+
+        footer {
+            border-top: 1px solid var(--border);
+            text-align: center;
+            padding: 25px 10px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        
+/* MOBILE RESPONSIVE DESIGN */
+
+@media (max-width: 600px) {
+
+    html, body {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .container {
+        width: calc(100% - 32px);
+        max-width: 100%;
+        margin: 0 auto;
+        min-width: 0;
+    }
+
+    header {
+        padding: 18px 0;
+    }
+
+    .brand {
+        font-size: 15px;
+        letter-spacing: 1.5px;
+    }
+
+    .story-header {
+        padding: 35px 0 20px;
+    }
+
+    h1 {
+        font-size: clamp(27px, 8vw, 34px);
+        overflow-wrap: break-word;
+    }
+
+    .category {
+        font-size: 11px;
+        letter-spacing: 2px;
+    }
+
+    .subtitle {
+        font-size: 14px;
+    }
+
+    .chapter-title {
+        font-size: 22px;
+    }
+
+    /* RESPONSIVE STORY IMAGE */
+    .story-image {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        object-fit: contain;
+        margin: 0 auto 25px;
+    }
+
+    /* STORY CONTENT */
+    .story-content {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .story-content p {
+        font-size: 15px;
+        line-height: 1.8;
+        text-align: left;
+        overflow-wrap: anywhere;
+        word-break: normal;
+        margin-bottom: 22px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    blockquote {
+        font-size: 16px;
+        padding: 16px;
+        overflow-wrap: anywhere;
+    }
+
+    /* CHAPTER NAVIGATION */
+    .chapter-navigation {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .chapter-button {
+        flex: 1 1 auto;
+        min-width: 0;
+        max-width: 100%;
+        padding: 10px 12px;
+        font-size: 13px;
+        white-space: normal;
+    }
+
+    img {
+        max-width: 100%;
+    }
+
+}
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <a href="../storyhomepage.html" class="brand">
+                STORIES & BEYOND
+            </a>
+        </div>
+    </header>
+
+    <!-- ALL CHAPTERS ARE INSIDE THIS CONTAINER -->
+    <main class="container">
+
+        
+
+
+        <!-- ================================= -->
+        <!-- CHAPTER 1 -->
+        <!-- ================================= -->
+
+        <section id="chapter1" class="chapter active">
+
+            <div class="story-header">
+                <h2 class="chapter-title">Chapter 1</h2>
+            </div>
+
+            <img
+                src="../Folder 2/1.jpg"
+                class="story-image"
+            >
+
+            <article class="story-content">
+
+                <p>
+                    Hindi ko alam kung anong oras na ngunit gusto ko nang matapos ito, kanina pa ako nag balanse ngunit
+                    hindi ko ma close ang transaction ko, Ano ba kasing kulanggg ?
+                    hayyst. sumakit na ang ulo ko hinikit ko ang ulo ko saglit, dahil parang sumasabog na'ra kakaisip.
+                    Ako nga pala si Jessel Luinzo Fuertez, do alam ko na ang sasabihin nyo ang haba nang pangalan ko
+                    but, inshort call me Jess nalang para hindi na kayo mahirapan tulad nitong transaction ko na ang sarap ipokpok nitong computer
+                    nato mag alas 8 na nang gabi nadamay tuloy itong kasama ko na si Rina Prez isa din itong teller tulad ko.
+                    hindi ka talaga matatapos niyan beshy kasi ang isang expense na papel ay nasa sahig sambit nito sa akin.
+                    shocks! andito ka lang pala ! pina hirapan mo pa ako ha ! 10 pesos lang naman palang kulang isang ballpen na expense lang!; pupunitin ko na sana, dahil uminit ang ulo ko bigla.
+                    Oh beshy ! huwag maawa ka uwing -uwi na ako attachement natin yan, huwag mong punitin sambit nito.
+                </p>
+
+                <p>
+                    nito sa akin.at nang alas noybe 9 nang gabi
+                    naglalakad na ako sa may convenience store para bumili nang pagkain,
+                    nang paglabas ko may nakita akong matanda na naka upo lamang at parang nagugutom ito, at wala man lang nagbigay nito,
+                    kaya nilapitan ko at binigyan nang pagkain dahil na naawa ako nito.
+                    Maraming salamat eneng ha, gutom na talaga ako wala man lang nagbibigay sa akin dito sambit nang matanda.
+                    lola asan ba kasi ang pamilya mo? sab tanong ko nita para ihatid ko sana ito sa bahay niya nang biglang may taxi na umorong sa harapan namin
+                    Ma'am asan punta nyo ? last byahe ko na ito dahil uwi nari n ako, wala napong gaanong taxi ngayong oras na ma'am sambit nito sa akin.
+                    Pasakay po manong ngunit ihatid muna natin si lola nang pagtingin ko sa likod wala na ang matanda ... teka andito lang siya kanina eh, sambit ko sa sarili ko, nang nagtataka
+                </p>
+
+                <p>
+                    Ma'am wala po akong nakitang matanda kanina, sabi nito sa akin.
+                    hindi andito talaga sya kanina manong binigyan ko pa nga nang pagkain,
+                    bigla tuloy nag taasan ang balhibo ko kaya dali-dali ako sumakay ng taxi.
+                    Araw - araw ganun ang routine nang buhay ko,
+                    gabi na maka uwi ng bahay at maagang papasok ra banko.
+                    Anak tumatanda kana, wala ka parin boyfriend wala ka man lang naipakilala sa akin ni isa man lang sambit nang mama ko.
+                    Si mama nalang ang natitira ra akin, wala na ang papa ko dahil ra sakit, kaya ibibigay ko lahat para kay mama, wala rin kasi akong kapatid.
+                    Mama ikaw muna uunahin ko raka na yang boyfriend na yan, wala pa akong plano sa ganyan, sambit ko kay mama.
+                    Meron naman nanligaw sa akin pero wala pa talaga ra isipan ko ang mga ganon.
+                </p>
+
+            </article>
+
+            <div class="chapter-navigation">
+
+                <span></span>
+
+                <button
+                    type="button"
+                    class="chapter-button"
+                    onclick="showChapter(2)"
+                >
+                    Chapter 2 →
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================= -->
+        <!-- CHAPTER 2 -->
+        <!-- ================================= -->
+
+        <section id="chapter2" class="chapter">
+
+            <div class="story-header">
+
+                <div class="category">Romance & Drama</div>
+
+                <h2 class="chapter-title">Chapter 2</h2>
+
+            </div>
+
+            <article class="story-content">
+
+                <p>
+                    Anak 26 years old kana, bigyan mo na ako nang apo kasi, nang may aalagaan naman ako dito, sabi ni mama sa akin
+                    Mama meron kanamang apo ay.. lima pa nga iyan..
+                    Anong apo na sinasabi mo ? itong mga apat na paa ? pambihira ka talaga Jess sambit ni mama
+                    buhakhak naman akong tumawa at himimas-himas ang mga alaga kong aso na puro doberman, mahilig talaga ako sa aso, kaya hindi ako gaano malungkot at napaka clingy pa nang mga baby ko.
+                    Cut off month na, ito ang pinaka ayaw ko dahil kailangan ma close ang transaction namin mula umpisa, natapos kami nang alas 10 de nang gabi at pumunta ulit ako nang convenience store dahil nagugutom ako nang makita ko ulit ang matanda nilapitan ko ito...
+                    lola andito ka ulit ? at pinigyan ko ito nang pagkain ,
+                    salamat eneng apaka bait mo talaga tulad ka parin nang dati sambit nito saakin
+                </p>
+
+                <p>
+                    dati po ? Kumonot ang noo ko, pangalawang beses palang nating pagkikita lola sabi ko nito at ngumisi lang ito sa akin.
+                    lola saan ka ba kasi naka tira ihahatid na po kita, gabi na at delikado lola, nong isang araw nagkita tayo bigla kalang nawala sabi ko nito.
+                    Huwag kang mag alala sa akin eneng, alalahanin mo ang sarili mo, binigyan sabi nito sa akin at may binigay ito sa akin isang coins.
+                    salamat at napaka bait mo parin sa akin eneng ito lang ang maibibigay ko sayo, itago mo sana ito at huwag iwawala malalaman mo rin ang kasagutan nito.
+                    sabi nang matanda sa akin Nang may taxi ulit na huminto, miss sasakay ka? tanong nito sa akin at umuo agad ako nang pagtingin ko ulit sa likod nawala ulit ang matanda.
+                    biglang tuloy tumaas ang balhibo nang katawan ko, nakakakita ba ako nang multo? tanong ko sa isipan, pero hindi eh, ito ang kauna
+                </p>
+
+                <p>
+                    unahan kong makakita at matanda pa ang creepy naman non.   tinignan ko ang binigay nang matanda, isang lumang peso at ang nakalagay na year ay 1989,
+                    pero bakit parang napaka halaga nito sa akin, bakit parang conectado ito sa buhay ko,
+                    bakit parang bumibigat ang pakiramdam ko na parang may kirot sa puso ko na hindi ko maintindihan,.
+                    anong kasagutan ang sinasabi sa akin ni lola?.. haay ang daming tanong sa isipan ko, wala man lang akong sagot.
+                    Pagdating ko sa bahay natulog na agad ako, napagod ako sa trabaho pati ang otak ko pagod narin sa kakaisip, hindi ko na nakain ang binili ko ..
+                    at nang kalahating gabi nanaginip ako na may kahawak ako kamay ngunit hindi ko makita ang mukha nito.
+                    Mahal na mahal kita sobra, ikaw ang nagbibigay ligaya sa buhay ko, hinding hindi kita kayang iwan kahit ano man ang mangyari sabi nito sa akin ngunit hindi ko parin kita ang mukha nito.
+                </p>
+
+            </article>
+
+            <div class="chapter-navigation">
+
+                <button
+                    type="button"
+                    class="chapter-button"
+                    onclick="showChapter(1)"
+                >
+                    ← Chapter 1
+                </button>
+
+                <button
+                    type="button"
+                    class="chapter-button"
+                    onclick="showChapter(3)"
+                >
+                    Chapter 3 →
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================= -->
+        <!-- CHAPTER 3 -->
+        <!-- ================================= -->
+
+        <section id="chapter3" class="chapter">
+
+            <div class="story-header">
+
+                <div class="category">Romance & Drama</div>
+
+                <h2 class="chapter-title">Chapter 3</h2>
+
+            </div>
+
+            <article class="story-content">
+
+                <p>
+                    at bigla akong nagising pagtingin ko sa orasan ay alas dose na at pumunta ako ng kusina para uminom nang tubig dahil na uuhaw ako,
+                    haaay buti ra panaginip ko parang may jowa ako, teka hindi ko man lang kita ang mukha nang lalaki, maka tulog nanga ulit maaga pa ako bukas.
+                    Point Of View of Vincent Qianzo Ochea -
+                    sir may meeting po kayo ni Mr. Turo mamayang alas singko sabi ni Alex na secretary ko.
+                    Oke mag review muna ako ng mga document para hindi masayang ang inverment natin pag kataon. sambit ko nito.
+                    ako si Vincent Qianzo Ochea may ari nang mga building na JPO may ibat-ibang branch na kami sa ibang bansa 26 years old na ako pero wala pa akong girlfriend
+                    man lang dahil sa cobrang busy ko ra trabaho may nereto si papa akin, anak nang business partner namin ngunit hindi ko pinag toonan nang pansin ito. nang tumawag si papa sa kin
+                </p>
+
+                <p>
+                    Vince mamayang alas kwatro e se set kita kay shena para makilala mo sha nang lubos sabi nito sa akin.
+                    papa may meeting ako mamayang alas singko at pwede tigilan nyo na iyan wala akong oras jan. sagot ko nito.
+                    Anak baka tumatanda kang lalaki nyan na walang asawa, mabuti nato kilala ko natin at mayaman din wika nito sa akin.
+                    Pa mag review muna ako at pinutol ko na ang tawag, tsk ayaw ko talaga pag uusapan mga ganyang bagay lalo nat sa kayamanan,
+                    dati gusto ko maging doctor ngunit business ang pinakuha sa akin para may kaalaman ako sa negosyo namin at ngayon ako na ang namamahala
+                    napilitan lang ako nito dahil ako lang din ang nag iisang anak nila. ene enjoy ko nalang ang buhay business man basta pangako ko sa sarili ko,
+                    ako ang mag dedesisyon kung sinong babae para sa akin dahil sinunod ko ang gusto nila na ako sa na ang hahawak nang negosyo namin. kahit ayaw ko.
+                    pero pagdating sa pag ibig-ko, ako ang masusunod kahit anong mangyari.
+                </p>
+
+                <p>
+                    Nang matapos na ang meeting namin, lumapit ang secretary ko.
+                    Sir tatawagan ko na po ba ang driver mo ? tanong nito sa akin.
+                    Huwag na Alex, may pupuntahan ako, sagot ko nito at tumango lang ito sa akin.
+                    Pumunta ako nang convenience store at may binili wala akong mga kasama at ayaw ko rin may bodyguard,
+                    hindi ako public na pagkatao ni sa TV hindi lumabas ang mukha ko kahit ang alam lang nila pangalan ko at isa sa pinakayaman ang pamilya ko.
+                    Nang paglabas ko sa convenience store dala nitong mga pinamili ko may nakita akong nakakaawang matanda na humihingi kaya binigyan ko nang pera at pagkain.
+                    Eho maraming salamat sayo, apaka buti mong tao sabi nito sa akin. Ngumisi lang ako nito, at aalis na sana nang biglang hinawakan nya ang kamay ko.
+                </p>
+
+            </article>
+
+            <div class="chapter-navigation">
+
+               <button
+                    type="button"
+                    class="chapter-button"
+                    onclick="showChapter(2)"
+                >
+                    Chapter 2 →
+                </button>
+
+                <button
+                    type="button"
+                    class="chapter-button"
+                    onclick="showChapter(4)"
+                >
+                    Chapter 4 →
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================= -->
+        <!-- CHAPTER 4 -->
+        <!-- ================================= -->
+
+        <section id="chapter4" class="chapter">
+
+            <div class="story-header">
+
+                <div class="category">Romance & Drama</div>
+
+                <h2 class="chapter-title">Chapter 4</h2>
+
+            </div>
+
+            <article class="story-content">
+
+                <p>
+                    Ito lang ang maibibigay ko sayo, itago mo ito nang mabuti ito ang nag bibigay saya ng buhay mo. sambit nito sa akin.
+                    Kumunot ang noo ko, ano daw? nagbibigay saya? tinignan ko ito at isang lumang oramaliit na orasan, lola hindi ko ito matatanggap nang pagtingin ko ulit sa matanda nawala ito.
+                    tika kanina andito lang yon eh, namalik mata ba ako? pero hindi binigyan ko yon nang pagkain na namamangha sa tanong ko sa sarili. ang creepy naman non.
+                    Pumunta na ako sa tabing dagat dito ako tatambay kapag may oras ako, para mag isip-isip tinignan ko ulit ang orasan hindi man lang ito umandar,
+                    maluma na ang orasan hindi ko sana tatanggapin baka importante ito sa matanda nang bigla niya ulit naisip ang sinabi nang matanda..
+                </p>
+
+                <p>
+                    "Nagbibigay saya? ngumisi ako bigla hindi ko mawari biglang lumakas ang tibok ng puso ko. sana totoo ang sinabing matanda.
+                    at nang gumabi na umuwi ako sa bahay, malaki ito at ako lang mag-isa dito dahil bumukod na ako gusto ko lang nang peace sa buhay at walang mag dedekta sa buhay ko.
+                    tanging mga kasambahay lang andito at security guard.
+                    Pumunta ako sa office nang bahay room ko, yes! tama may office ako dito naka tambak ang mga dokumento,
+                    inilabas ko ang lumang orasan at ipinatong ito sa lamesa, iwan hindi ko mawari parang napakahalaga nito sa akin,
+                </p>
+
+                <p>
+                    bibilhan ko nalang ito nang battery para umandar. at nag umpisa na akung mag check nang mga ducuments nang bigla akung nakatulog dahil sa antok at puyat na rin.
+                    ------------------------------D R E A M --------------------------------
+                </p>
+
+                <p>
+                    Mahal na mahal rin kita, hindi ko kayang mawala ka sa akin, gusto ko nang magpakasal natayo,
+                    tanggap ko kong anong estado nang buhay mo, ayoko nang ganitong buhay dito gusto ko nang lumaya sa karangyaan na buhay
+                    dito gusto kong mamuhay kasama ka mahal, ayokong ipakasal sa ibang lalaki na hindi ko mahal at umiiyak ito.
+                    Nagising ako bigla at tumunog ang lumang orasan pag tingin ko, alas dose nang hating gabi at teka bakit umandar ito?
+                </p>
+
+            </article>
+
+            <div class="chapter-navigation">
+
+                <button
+                    type="button"
+                    class="chapter-button"
+                    onclick="showChapter(3)"
+                >
+                    ← Chapter 3
+                </button>
+
+                <button
+                    type="button"
+                    class="chapter-button"
+                    onclick="showChapter(5)"
+                >
+                    Chapter 5 →
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================= -->
+        <!-- CHAPTER 5 -->
+        <!-- ================================= -->
+
+        <section id="chapter5" class="chapter">
+
+            <div class="story-header">
+
+                <div class="category">Romance & Drama</div>
+
+                <h2 class="chapter-title">Chapter 5</h2>
+
+            </div>
+
+            <article class="story-content">
+
+                <p>
+                    akala ko sira ito, tila naramdaman ko nang iba sa aking puso, hindi ko mawari bakit ganon nalang ang panaginip ko,
+                    pinit ko tingnan ang mga mukha ngunit sobrang liwanag hindi ko ma aninag ang mga mukha isa pa itong orasan na nagbibigay hiwaga sa akin
+                    pumunta ako sa kwarto ko at hindi ko na dinala ang lumang orasan, nahihiwagaan ako nito.
+                    kina umagahan, sa opisina ko, umupo ako at hindi ko parin ma alis sa otak ko ang mga panaginip ko, para itong totoo,
+                    habang tinignan ko ang lumang orasan para sana ibalik ko ito sa matanda, nang biglang sumakit ang ulo ko at parang may imahe akong nakita, isang orasan at sinoot ko ito iyun ang aking nakita, at at bigla akong nakatulog ulit.
+                </p>
+                <p>
+                    ----------------------------------------------D R E A M--------------------------------------------------------------
+                </p>
+                <p>
+                    Anong ibig sabihin nito Sela ? sinuway mo ba ang aming kagustuhan nang mama mo". Para sa isang hamak na hardenero ?
+                    tunog nang isang galit na boses nang isang lalaki
+                    Papa malapit nang grumaduate si ken sa pag-aaral maka pag trabaho din ito nang matino,
+                    please ayokong ikasal sa taong hindi ko gusto sagot ni Sela na umiiyak
+                </p>
+
+                <p>
+                    wala na tayong dapat pag-usapan ! ipasok nyo sa loob ang anak ko ! 
+                    galit na utos nito sa mga Guardia nito. 
+                    Ginoong fuertez, pakiusap po mahal ko po si sela hinding-hindi ko ito rasaktan.
+                    sabi nang lalaki na umiiyak na rin.   hindi mo maipakakain ng isang pag-ibig lang ang anak ko!
+                    hindi mo maibibigay lahat nang karangyaan para sa anak ko! Ken Ochea ! tandaan mo !
+                    hinding hindi maging sayo ang anak ko! galit na boses nito at pumasok sa bahay.
+                    Naiwan na umiiyak si Ken sa labas at hindi alam kung ano ang gagawin.   
+                    Biglang nagising si Vincent dahil sa tunog nang isang orasan nang tinignan niya ito ay alas dose na pala nang tanghali,
+                    at hawak niya ito habang natutulog. 
+                    sir pagod po ba kayo sa bahay ? antagal mo pong natulog sir, sabi ni Alex at inilapag ang makapal nang documento.  
+                    bigla akung napatanong kay Alex. Alex naniniwala ka ba sa rein reincarnation ? tanong ni Vincent.  
+                    Kumunot ang noo ni Alex, sir baka sobrang pagod mo iyan pahinga ka kaya ulit. sabi nito. 
+                </p>
+
+            </article>
+
+            <div class="chapter-navigation">
+
+                <button
+                    type="button"
+                    class="chapter-button"
+                    onclick="showChapter(4)"
+                >
+                    ← Chapter 4
+                </button>
+
+                <button
+                    type="button"
+                    class="chapter-button"
+                    onclick="showChapter(6)"
+                >
+                    Chapter 6 →
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- ================================= -->
+        <!-- CHAPTER 6 -->
+        <!-- ================================= -->
+
+        <section id="chapter6" class="chapter">
+
+            <div class="story-header">
+
+                <div class="category">Romance & Drama</div>
+
+                <h2 class="chapter-title">Chapter 6</h2>
+
+            </div>
+
+            <article class="story-content">
+
+                <p>
+                    Antagal ko natulog, tapos patutulugin mo ulit ako alex ? 
+                    tingnan mo nga itong documento, sabi ni vincent na parang naiinis.   
+                    Ngumisi lang si Alex nito, matagal na nagtatrabaho si Alex kay Vincent, para na nya itong kapatid halos araw-araw 
+                    ba naman kasama ito... nang napansin ni Alex ang lumang orasan.   Sir bumili ka pala nang antik ? tanong ni Alex.   
+                    binigay lang ito nang matanda, alam mo alex nang binigay ito sa akin, at kapag hawak ko ito, 			
+                    parang ina antok ako at nanaginip nang kung ano-ano nounit hindi ko naman kita ang mga mukha,.. 				
+                    dahil talaga ito sa orasan eh. sabi pa nito.   At namangha si Alex sa kanyang narinig,
+                </p>
+                <p>
+                    "sir baka totoo po ang reincarnation, na sabi nito 
+                    ewan Alex, maniniwala na ako kapag nanaginip ulit ako sa ngayon permahan ko muna tong mga documents.  
+                    Pagkatapos ko sa trabaho pumunta ulit ako sa convenience store, ngunit hindi ko na makita ang matanda,
+                    sa at sa kakanahan ko may nabangga akong babae.  
+                </p>
+                <p>
+                    ay! sorry po sir, sorry po, nagmadali po kasi ako eh, sorry po talaga. sabi nito sa akin.   
+                    sige oke lang, sabi ko nito, nang matignan ko ang mukha nang babae biglang sumakit ang ulo ko
+                    at sa pag pikit ko, puti lahat ang nakita ko at nag flashback yong mga panaginip ko.. ngunit hindi ko parin kita ang mga mukha nito..   
+                    sir ? oke lang po ba kayo ? tanong nito sa akin na parang nag-aalala...   
+                    o.o oke lang salamat, at bumalik na ako sa sasakyan.. baka pagod lang ito ipapahinga ko na to.   
+                    ( Jess P.O.V )
+                    May nabangga ako kanina isang lalaki napaka gwapo niya, grabe sobrang lakas ng kaba nang dibdib ko, nagmadali kasi ako baka wala na akung masasakyan..
+                    ewan parang kilala ko na ang lalaki eh una ko pa naman itong nakita, puyat lang siguro ito sabi ko ra sarili ko.   
+                    nagbihis na ako, at naka pa ko sa bulsa ko ang lumang barya 
+                </p>
+
+            </article>
+
+            <div class="chapter-navigation">
+
+                <button
+                    type="button"
+                    class="chapter-button"
+                    onclick="showChapter(5)"
+                >
+                    ← Chapter 5
+                </button>
+
+                <button
+                    type="button"
+                    class="chapter-button"
+                    onclick="showChapter(7)"
+                >
+                    Chapter 7 →
+                </button>
+
+                <span></span>
+
+            </div>
+
+        </section>
+		
+		
+        <!-- ================================= -->
+        <!-- CHAPTER 7 -->
+        <!-- ================================= -->
+
+        <section id="chapter7" class="chapter">
+
+            <div class="story-header">
+
+                <div class="category">Romance & Drama</div>
+
+                <h2 class="chapter-title">Chapter 7</h2>
+
+            </div>
+
+            <article class="story-content">
+
+                <p>
+                    Pagkatapos kong magbihis humiga na ako sa kama ko at hawak ko parin ang baryabakit napaka hiwaga mo?. 
+					napatanong nalang ako nito, at hindi ko namalayan nakatulog na pala ako na hawak ko ito.(Panaginip)
+					ikinulong ako ni papa sa aking silid, tanging pag iyak lang ang nagawa ko, sa isip ko baka patayin ni papa ang aking mahal,
+					hinatiran ako nang pagkain sa mga kasambahay ngunit hindi parin ako kumain.pumasok si papa sa aking silid.
+					kumain ka sela para may lakas ka sabi nito sa akin.ayoko papa! pagmamaktol ko nito.
+					hayaan nyo na lamang ako sa buhay ko papa paki-usap mahal ko si ken hindi ko kayang mawala sha papa, sabay sa mga luha kong walang tigil sa pag patak nito.   
+                </p>
+
+
+				<P>
+				
+				(panaginip)Ano nalang ang sasabihin sa mga partner natin sa mga ari-arian natin sela !. 
+				na maganda ka naman at may kaya! bakit sa isang hardenero ka pa pumatol ?! asan ba ang utak mo?.
+				galit nitong sambitmas iniisip mo pa ang iba papa! kaysa sa sarili mong anak ?! 
+				galit ko nitong sabi na walang tigil ang iyak.sa ika limang Araw, itatakda ang iyong kasal kay nathaniel anak sa isa sa ating partner sa negosyo,
+				kaya kumain ka at magpa lakas ! sambit nito sa akin.hindi na ako umimik pa at hindi ko parin kinain ang mga pagkain na hinatid sa akin.
+				wala nang silbi ang buhay ko gusto ko nalang mamatay. sabi ko sa sarili ko.kina umagahan pumasok si manang Ester at naghatid nang pagkain ko, 
+				si manang ay parang pangalawa ko nang mama, siya nag alaga sa akin simula pagkabata ko ..wala parin tigil ang mga luha ko .. niyakap ako ni manang ,   					
+				
+				</p>
+				
+
+
+
+
+            </article>
+
+            <div class="chapter-navigation">
+
+                <button
+                    type="button"
+                    class="chapter-button"
+                    onclick="showChapter(6)"
+                >
+                    ← Chapter 6
+                </button>
+
+                <button
+                    type="button"
+                    class="chapter-button"
+                    onclick="showChapter(8)"
+                >
+                    Chapter 8 →
+                </button>
+
+                <span></span>
+
+            </div>
+
+        </section>
+		
+		
+		
+		
+		
+		
+		
+		<!-- ================================= -->
+        <!-- CHAPTER 8 -->
+        <!-- ================================= -->
+
+        <section id="chapter8" class="chapter">
+
+            <div class="story-header">
+
+                <div class="category">Romance & Drama</div>
+
+                <h2 class="chapter-title">Chapter 8</h2>
+
+            </div>
+
+            <article class="story-content">
+
+                <p>                   
+				   
+				 Anak kumain ka na baka magkasakit ka pa niyan sabi nito sa akin.
+				Manang gusto ko nalang mamatay kaysa maikasal sa hindi ko mahal...
+				anak huwag mong sabihin iyan malulungkot lang si ken niyan. Ano gusto mo bang tumakas ? gusto mo tulungan kita anak ? hindi ko kayang makita na ganyan ka anak nasasaktan ako anak ... 
+				lumuha rin si Manang ..
+				tahan na manang huwag na po kayo umiyak.... paano po ako tatakas ang daming bantay po at wala din po akong pera kinuha lahat ni papa sabi ko nito.
+				ito anak gamitin mo ito mahal ito bigay to nang mama mo, isanla mo yan para magka pera ka anak. sabi ni manang Ester
+				manang hindi ko yan matanggap yang relo na yan mamahaling regalo yan ni mama sayo.
+				
+                </p>
+				
+				<P>
+				
+				sege na anak tanggapin mo yan, gusto kong makatulong sayo anak. pupuntahan ko si ken para ma plano ang pagtakas mo anak. sabi ni manang
+				niyakap ko nang mahigpit si manang at nagpasalamat at kumain narin ako para may lakas ako sa pagtakas ko kay papa.
+				Nagising ako kina umagahan dahil dinilaan ako nang mga aso ko. grabe namang panaginip na yon ang lungkot pagtingin ko sa kamay ko hawak ko parin ang barya.
+				teka hawak ko pala to kagabi, bakit ganun pag hawak ko ito parang may mali...
+				inilagay ko ito sa bag ko, dahil parang nag taasan ang mga balahibo ko... , ang creepy naman nito. sabi ko sa sarili ko.
+				At dahil sabado naman ipapasyal ko ang mga aso ko kaya tinawagan ko si kina at magkikita kami sa plaza dala ang mga aso namin
+								
+				</p>
+				
+				
+	          
+			  <p>
+                  
+				  Plaza
+				Habang naglalakad ako kasama ang lima kong aso, hindi parin mawala sa isipan ko ang panaginip ko, napatanong tuloy ako sa sarili ko bakit ganun ?
+				ilang araw ko nang napaniginipan pero hindi ko parin makita ang mga mukha at bakit nasasaktan ako ? hindi naman siguro ako yon?
+				sa kalagitnaan nang aking pag-iisip malapit na tuloy akong nasaga-saan mang motor big bike at napa hito hinto ito.
+				hoy ! babae! ano magpapakamatay ka ba ?! galit nitong sambit, at kinuha ang helmet sa ulo niya at umalis sa motor 
+				niya para tulungan ako dahil napa upo ako ngunit hindi ko parin nabitawan ang mga alaga kong aso.
+				kaya kakagatin na sana siya nang pagtanaw ko sa mukha niya.
+				Anak nang !! ikaw nanaman ? kita mo naman may tatawid eh, wala kabang mata ?! galit kong sabi nito .
+				Oh ?! ikaw yong sa convienience store ah? sabi nito .
+				
+                </p>
+			  
+			  
+			  
+			  
+
+            </article>
+
+            <div class="chapter-navigation">
+
+                <button
+                    type="button"
+                    class="chapter-button"
+                    onclick="showChapter(7)"
+                >
+                    ← Chapter 7
+                </button>
+
+                <button
+                    type="button"
+                    class="chapter-button"
+                    onclick="showChapter(9)"
+                >
+                    Chapter 9 →
+                </button>
+
+                <span></span>
+
+            </div>
+
+        </section>
+		
+		
+		
+		
+		
+		
+		
+		
+		<!-- ================================= -->
+        <!-- CHAPTER 9 -->
+        <!-- ================================= -->
+
+        <section id="chapter9" class="chapter">
+
+            <div class="story-header">
+
+                <div class="category">Romance & Drama</div>
+
+                <h2 class="chapter-title">Chapter 9</h2>
+
+            </div>
+
+            <article class="story-content">
+
+               
+				
+				
+				<p>
+				
+				teka nga lang ! so kasalanan ko pa ? na bigla bigla ka lang tatawid eh sobrang lapit ko na ! at saka ipapa lapa mo pa ako sa mga aso mo !? galit nitong sabi.
+				Nang biglang nag ring ang cellphone ko si kina tumatawag kaya nag sorry na lang ako para matapos na aming bangayan namin
+				O.O sorry na po .... sabi ko nito na parang napipilitan lang ... ano ? nasaktan ka po ba? na sarcastic kong tanong. Kung wala naman po. alis na po ako ha .... sabay lakad kasama mga aso ko..
+				Oh beshey bat ang tagal mo naman ? tanong nito sa akin
+				Muntik na akong nasagasaan beshey at nag bangayan pa kami, kainis yong mukha na yon sabi ko kay kina
+				Ano ?! gulat nitong tanong at sinuri ang katawan ko kung may galus ba ako.
+				hindi ka ba nasaktan beshey ? tanong nito na nag-alala
+					
+				</p>
+				
+				<p>
+                   
+				 hindi naman beshey salamat sabi ko nito
+				bakit beshey anong meron sa mukha nang lalaki ? tanong nito sa akin.
+				gwapo sana, suplado lang beshey ang layo sa ugali kainis ! sabi ko nito.
+				Aba,... Aba.... Jess ngayon ka lang pumuri nang lalaki na sobrang gwapo ba? sabay kiliti nang bewangi ko ...
+				huwag ka nga Rina kainis nga yon sabi ko nito...
+				(Vincent P.O.V)
+				Nung nasa convience store ako may nabangga akong babae na sobrang ganda niya kaya lang parang nagliwanag ang lahat at sumakit ang ulo ko at na alala ko ang mga panaginip ko..
+				bakit parang pamilyar sa akin ang babae nagkita na ba kami ? tanong ko sa sarili ko ,
+				ang mga panaginip ko hindi ko parin kita ang mga mukha, konektado ba sila sa akin ?  				   				   
+                </p>
+				
+				
+				<P>			
+				haaay hindi ko na alam kong anong nangyari sa akin ..
+				Kinuha ko ang lumang orasan at hinimas ito
+				ano bang meron sayo ? bakit ang hiwaga mo para sa akin ?.... hindi ko namalayan nakatulog na pala ako .
+				(DREAM)
+				Manang bakit ka nandito ? baka makita ka ng mga guardia nina sela at madamamay ka pa tanong ko nito . . .
+				iho sa ika apat na araw aalis sina don Fuertez binabalak kong etakas si sela dahil sa ika limang araw ikakasal sha sa binata na si Nathaniel sambit nito sa akin
+				at bigla akong nanlumo at napa luha,
+				Manang mahal na mahal ko si sela hindi ko kay kayang mawala sha wala nang silbi ang buhay ko pag gamin ....
+				Mag paka tatag ka iho mag kakasama rin kayo ni sela .. sa kabilang baryo kayo mag kikita pag takas ni sela ..
+																			
+				</P>
+				
+                
+
+            </article>
+
+            <div class="chapter-navigation">
+
+                <button
+                    type="button"
+                    class="chapter-button"
+                    onclick="showChapter(8)"
+                >
+                    ← Chapter 8
+                </button>
+
+                <button
+                    type="button"
+                    class="chapter-button"
+                    onclick="showChapter(10)"
+                >
+                    Chapter 10 →
+                </button>
+
+                <span></span>
+
+            </div>
+
+        </section>
+		
+		
+		
+		
+		
+		
+		
+		
+			<!-- ================================= -->
+        <!-- CHAPTER 10 -->
+        <!-- ================================= -->
+
+        <section id="chapter10" class="chapter">
+
+            <div class="story-header">
+
+                <div class="category">Romance & Drama</div>
+
+                <h2 class="chapter-title">Chapter 10</h2>
+
+            </div>
+
+            <article class="story-content">
+				
+				<p>
+				
+					Alagaan mo nang mabuti ang si sela ha
+					parang anak ko na yon, gusto ko lang magiging masaya na ang anak ko iho...
+					may barya ako dito, gamitin nyo ito para maka pag simula .. sambit sabi nito..
+					manang maraming salamat talaga ha itoy napa-ka laking tulong para sa amin ni sela, huwag kang mag alala alagaan ko po nang mabuti si sela po .
+					kina umagahan pag gising ko may luha pa ang mga mata ko, napa tanong nalang ako sa sarili ko, bakit sila paulit-ulit sa panaginip ko ? ano ba ang mukha ni sela, si ken ? 
+					at yong Manang pamilyar ang bosses.. napahinto ako sa aking isipan ng may tumatawag sa cellphone ko
+					Hello ? napatawag ka kina ?
+					Insan pahingi nang pabor.... birthday ko na sa susunod na araw, pwede pa rent sa building mo? available pa ba ?
+					OO may bakante pa naman, huwag munang rentahan pa birthday ko na sayo.
+					
+				</p>
+				
+				
+				<P>
+				talaga ? hulog ka talaga nang langit Insan ! masaya nitong sabi kay Vincent	
+				ede hindi na sana ako makalakad Insan ang taas nang langit eh... pabiro nitong sabi.
+				sira ka talaga ! basta maraming salamat ha ang yaman mo talaga ! sambit nito
+				wala yon favorite insan kita eh.
+				(Jess Pov.)
+				andito kami ngayon sa mall ni kina nag susukat nang damit damit malapit na birthday niya.
+				Jess ! ito ang isukat mo sobrang ganda mo nito! sabi nito sa akin
+				at nang tinignan ko ang presyo ang mahal !
+				Naku! wala akong ganun halag Rin wag yan..
+				hindi libre ko na yan sayo, kasi ikaw lang talaga ang best friend ko eh...
+				sabi nito sa akin na may lapad ang ngisi
+				
+				</p>
+				
+				
+				<P>
+				
+				Rina, sobrang bait mo sa akin at napaka totoo mo rin tao kaya kita naging bestfriend PERO... hindi ko to matatanggap pang ilang sweldo nato eh...
+				Magtatampo talaga ako sayo Jess, ipon ko talaga yan para sayo eh.... pagsisinungaling ko sa kanya . may kaya naman talaga kami pamilya ko,gusto ko lang talaga magtrabaho , sa banko.
+				Sege na nga .... Ikaw ang mag bibirthday eh , ako pa ang may regalo galing sayo...
+				Ikaw talaga Rina ! salamat ha , kaya mahal na mahal kita eh sobrang bait mo... sabi ko nito sa kanya.
+				(Ikalawang araw ; kaarawan ni Rina)
+				grabe ! ang enggrande naman nito Rina mayaman ka ba ? napatanong nalang ako kay kina kasi pang yaman eh...
+				Naku ! Renta lang to Jess he he sabi nito..
+								
+				</p>
+				
+				
+				
+				<P>
+				hinila ako ni kina at may pinakilala sa akin
+				Insan ! ito nga pala ang beshy ko, ang ganda diba ? sabi nito
+				Ikaw ?! pinsan ni kina ? anak nang ang liit nga naman nang mundo .
+				at Ikaw rin ?! baka ipa lapa muna ako sa mga aso mo ha !
+				teka ... teka nga lang magka kilala kayo? pagtatakang tanong kay kina sa amin ..
+				Hindi ? at sabay patalaga kami ..
+				sha lang naman yong lalaking muntik nang naka bangga sa akin yong motor bike nya !
+				aba kasalanan ko pa bigla -bigla kang sumulpot kasama aso mo ... sabi nito sa ..
+				Alam nyo itigil nyo yan ! .. haha bati na kayo beshey at Insan please ... birthday ko naman eh .. sabi nito sa amin ..
+				
+				</p>
+				
+			
+                
+
+            </article>
+
+            <div class="chapter-navigation">
+
+                <button
+                    type="button"
+                    class="chapter-button"
+                    onclick="showChapter(9)"
+                >
+                    ← Chapter 9
+                </button>
+
+                <button
+                    type="button"
+                    class="chapter-button"
+                    onclick="showChapter(11)"
+                >
+                    Chapter 11  →
+                </button>
+
+                <span></span>
+
+            </div>
+
+        </section>
+		
+		
+		
+		
+		
+		
+	
+
+
+
+
+
+		
+			<!-- ================================= -->
+        <!-- CHAPTER 11  -->
+        <!-- ================================= -->
+
+        <section id="chapter11" class="chapter">
+
+            <div class="story-header">
+
+                <div class="category">Romance & Drama</div>
+
+                <h2 class="chapter-title">Chapter 11</h2>
+
+            </div>
+
+            <article class="story-content">
+
+                <p>
+                  I'm Vincent pagpapakilala nito sa akin at inilahad ang palad nito sa akin
+				I'm Jessel, pasensya ka na sa nangyari ha hindi ko talaga sinadya sabi ko nito...
+				hindi Oke lang.. kalimutan mona yon.. sabi nito sa akin at ngumiti pa sa akin
+				shocks ang gwapo, at mabait naman pala sabi nang isipan ko .. naku! naku erase ....
+				Oh! Oke na kayo bati na sa?! kain muna kayo, lalo ka na beshey .. sabi ni kina
+				Sege beshey ha gutom na ako eh , hehe pabulong kong sabi nito.
+				(Rina POV)
+				Nakita ko si Insan na titig na titig kay Jessel , kaya nilapitan ko...
+				Ang ganda diba ?? sabi ko kay Insan
+				ha?? sino jan maganda ?
+				
+                </p>
+                
+				
+				<P>
+				
+				nakuuu !! Insan kilala nakita.
+				kung gusto mo beshey ko ...
+				huwag mong sabihin na mayaman ka, na ikaw ay may ari nang malalaking building ..
+				bakit ? tanong nito sa akin na may pagtataka.
+				ayaw non nang mga mayayaman,
+				niligawan na yan ng anak nang may ari sa trabaho namin, bastid lang ,
+				maraming mayaman nanligaw niyan , bastid lahat , kaya ikaw ? ha!ha!
+				huwag mong sabihin bilyonaryo ka haha!
+				(Vincent P.O.V)
+				napa isip.. ako sa sinabi ni Insan, tungkol kay Jessel, mga ganitong babae ang gusto ko eh, yong simple lang , ayaw ang kayamanan,
+				Kaya naging interesado ako kay Jessel, simula nang araw nato sisimulan kong kilalanin si Jessel , hindi ko alam , kahit maraming beses na kaming nagkasagutan
+				
+				</p>
+				
+				<p>
+				
+				parang magaan parin loob ko sa kanya at parang may kakaiba sa nararamdaman ko kay Jessel, hindi ko maipaliwanag. (inserted above line: amin)
+				haaay ! dapat maging akin itong gabi.
+				at sumang ayon ang tadhana sa amin, dahil muling mag isa si Jessel sa may balkonahe.
+				Hello may I join with you ? sabi ko nito.
+				Oh ! yes, sure . .
+				Kumusta hindi ka na boboard dito ? tanong ko nito..
+				hindi naman , sanay na akong mag isa , mas maka pag isip ako nang mabuti ...
+				bakit anong iniisip mo ? pagtataka kong tanong nito
+				at bakit ko sasagutin iyan ? hindi naman tayo closed ? sarcastic nitong sagot
+				
+				</p>
+				
+				<P>
+				ngumiti ako, sa isip ko mga ganitong babae gusto ko eh, hirap lapitan nang lalaki .
+				Oh bat ngiting ngiti ka jan .?
+				may masaya ba akong nasabi sayo ? tanong nito
+				Walaaa ang ganda mo pala sabi ko nito, at namula ang mukha nito ni hindi maka tingin ng deretso sa akin.
+				parang sira umiba sa usapan eh. sabi nito na hindi naka tingin sa akin.
+				totoo , hindi ko napansin non naka focus kasi ako sa mga aso mo non eh, ang lalaki kasi!
+				ah yon ba, mababait mga aso ko 😊,sabi nito sabay ngiti nito sa akin.
+				ang ganda niya para shang anghel..
+				simula non pinag background check ko si Jessel, napag alaman ko mayaman naman pala talaga sila kaya lang edeno nate niya lahat sa mga charity tanging mga aso lang ang natira na bigay sa kanyang ama na   						
+				</p>
+							
+
+            </article>
+
+            <div class="chapter-navigation">
+
+                <button
+                    type="button"
+                    class="chapter-button"
+                    onclick="showChapter(10)"
+                >
+                    ← Chapter 10
+                </button>
+
+                <button
+                    type="button"
+                    class="chapter-button"
+                    onclick="showChapter(12)"
+                >
+                    Chapter 12  →
+                </button>
+
+                <span></span>
+
+            </div>
+
+        </section>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+			<!-- ================================= -->
+        <!-- CHAPTER 12  -->
+        <!-- ================================= -->
+
+        <section id="chapter12" class="chapter">
+
+            <div class="story-header">
+
+                <div class="category">Romance & Drama</div>
+
+                <h2 class="chapter-title">Chapter 12</h2>
+
+            </div>
+
+            <article class="story-content">
+
+                <p>
+                  na yumao na. lalo ko tuloy nagustuhan si Jessel walang biro ito ang kauna-unahang babae na naging interesado ako. at tinawagan ko si Insan..
+				Hello Insan ? busy ka ba ? pwede pahingi number nang bestfriend mo ?
+				Aha ! tinamaan ni kubido ! sabi ko na ehhh. tatanungin ko muna ha wait lang.
+				beshy ! yong Insan ko, kilala mo naman diba ?
+				OO bakit beshy ? tanong nito
+				hihingi daw nang phone number mo may utang ka daw sa kanya ... sabay ngisi nito.
+				Ano ?! kailan ako nagka utang ? ibigay mo nga number ko bilis !!.. galit na sabi nito.
+				Oh ito Insan e sesend ko na ha , sabay tawa nito
+                </p>
+                
+
+				<p>
+				Pambihira ka Insan, mamaya katalaga sa akin sabi ko nito.
+				Oh Insan ikaw na bahala ha! Good luck! sabay tawa nito.
+				tinawagan ko agad, at sumagot agad ito.
+				Hello ?! Kailan ako nagka utang sayo aber ?? galit na tanong nito.
+				Ka kalma lang, ito naman ang init nang ulo sabay sabi ko nito.
+				Sagutin mo kasi ! uminit ulo ko sayo eh. sabi nito.
+				ako kasi may utang sayo, kaya, kita tayo mamaya susunduin kita sa work mo. bye! ene off ko agad ang phone para hindi na mag reklamo hehe.
+				Aba! teka lang, tarantado to Insan mo binabaan ako beshy, hindi pa ako nakapag O.O eh. pagsusumbong nito kay Rina.
+				at tinawanan lang ito.
+				</P>
+				
+				
+				<P>
+				(Vincent P.O.V)
+				nasa labas na ako nang opisina nila, at tanging big bike lang dala ko, baka hindi nya magustuhan kapag malaman niyang CEO ako.
+				excited na ako makita ang galit na mukha nito hehe.
+				Oyy! kaninong boyfriend to naghihintay sa labas ang pogi "sabi nang katrabaho nila."
+				(Jessel P.O.V)
+				Narinig ko ang mga bulungan nang mga katrabaho ko sa opisina my gwapo daw na lalaki sa labas, ang swerte daw nang girl friend nito.
+				Kaya naki esyoso ako nang pag tingin ko anak nang P.U.T.A. itong tipaklong lang pala akala mo naman kong sinong artista tsk! pero empernes mas gwapo pa sa artista eh....
+				teka teka erase ano ba tong iniisip ko tipaklong narin hays..
+				Nilapitan ko ito at nag tinginan mga katrabaho ko.
+				</p>
+				
+				
+				
+				<P>
+				Ang aga ! Ang aga ! O.O wala pang alas singko pinitik ko ang noo nito, dahil na iinis ako iwan dahil sa maraming nagtinginan nito. or hindi ko ma explain.
+				Aray ! ang sakit nang pag pitik mo sabi nito.
+				Pasensya na excited lang eh. 4:50 na kaya tara na ! sabi nito na excited na parang bata lang.
+				teka lang ! hindi pa ako balance eh, ikaw lang my otang na excited ah ! sabi ko nito na naiinis.
+				tinawan lang ako nito
+				Pagpasok ko sa opisina nagsi lapitan sila,
+				Oy ! Jess ang gwapo nang boyfriend mo parang artista sabi nang mga chismosa kong katrabaho at tinawanan ko lang ito.
+				Anong boyfriend sabi nyo, cliente yan mag babayad nang otang, balik na nga kayo sa work nyo baka ma sesante tayo nito eh...
+				</P>
+				
+				
+				<P>
+				Saan mo gustong kumain ? tanong nito sa akin ,
+				ha ? akala ko ba mag babayad ka nang otang ? ni hindi ko nga natandaan may otang ka. sabi ko nito na may pagtataka
+				nagutong ako kaka hihintay , kaya ikaw nang pumili kong asan tayo kakain !
+				Sege ! sa ihawan tayo sa paborito kong mga barbecue . . . !
+				barbecue ? nagtataka nitong tanong .
+				O.O masarap yon ! excited kong sabi nito bakit ayaw mo ?
+				Sege ! don tayo sa gusto mo .
+				at pina andar na niya ang motor niya .
+				Pagdating namin sa paborito kong tindahan nang barbecue , nag order agad ako nang ulo , paa , laman nang loob , at baboy
+				</P>
+				
+				
+				
+				
+				
+
+
+            </article>
+
+            <div class="chapter-navigation">
+
+                <button
+                    type="button"
+                    class="chapter-button"
+                    onclick="showChapter(11)"
+                >
+                    ← Chapter 11 
+                </button>
+
+                <button
+                    type="button"
+                    class="chapter-button"
+                    onclick="showChapter(13)"
+                >
+                    Chapter 13 →
+                </button>
+
+                <span></span>
+
+            </div>
+
+        </section>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+			<!-- ================================= -->
+        <!-- CHAPTER 13  -->
+        <!-- ================================= -->
+
+        <section id="chapter13" class="chapter">
+
+            <div class="story-header">
+
+                <div class="category">Romance & Drama</div>
+
+                <h2 class="chapter-title">Chapter 13</h2>
+
+            </div>
+
+            <article class="story-content">
+
+                <p>
+                 at dinamihan ko ito dahil gutom narin ako nag patingin ko kay vincent, hindi alam kong anong gusto nito.
+				hindi ka parin naka pili ?! tanong ko nito na nagtataka.
+				ahhh ehh.. kong ano ang napili mo ganon narin sakin. sagot nito at ngumisi na pilit.
+				After how many hours at naloto narin,
+				grabe ang sasarap nito takam na takam na ako kain na tayo ! sabi ko kay vincent.
+				habang kumain ako , napansin ko si vincent na parang hindi alam kong anong uunahin na kainin na para bang first time niya itong makain kaya kinuha ko ang baboy na barbecue at isinawsaw at nilagay ko sa plato niya.
+				unahin mo yan masarap yan. sabi ko nito.
+				Salamat hehe..
+                </p>
+                
+
+
+				<P>
+				Nang kinain na niya ito, nasarapan sha at nag order pa sha ulit. mas marami' pang nakain kaysa sa akin eh...
+				Nagtataka talaga ako sa kanya parang bang ngayon nya lang natikman ang barbecue . hmmm....
+				Magbabayad na ako sabi ko nito.
+				tapos na nabayaran ko na, sabi nito.
+				ha ? binayaran mo lahat ? marami yon ang akin eh.
+				diba sabi ko sayo may otang ako kaya binayaran ko na. sabi nito na ngumisi
+				Ewan ko sayo kong anong otang sinasabi mo , sa isip ko mabait naman pala tong mokong na to
+				para bang lumakas ang kaba nang aking dibdib nang ngumisi ito ang gwapo naman pala nito.
+				</P>
+
+				<P>
+				haaay erase, erase otak.
+				pumunta kami sa plaza at nag pahinga muna mokang napa rami-rami kami ng kain eh.
+				at itong isa pangiting ngiti lang parang nasira na ata ang otak eh..
+				Na curios na ako sayo ha, bat ba ngiting ngiti ka jan ? para kang may sapol sa otak.
+				Oy hindi naman masaya lang ako nang ganito.. kumakain nang barbecue, nagpahinga dito sa plaza na kasama ka ang simple lang.
+				ha ? eh ganito naman talaga tayong mga simple lang bakit ? hindi mo ito nagagawa ? bakit ? mga restouran ka ba kakain ? eh kong ganon mayaman ka ?! sabi ko nito na naiinis.
+				ha ?!. hindi-hindi, pagdeny nitong sabi ahh ehh sa production ako nag tatrabaho sabi nito na parang hindi sigurado sa sasabihin.
+				Oke ? seguruhin mo lang, ayoko sa mga mayayaman nga mata pobre.
+				</P>
+
+				<P>
+				hindi naman siguro lahat, baka my mabait naman sabi pa nito.
+				may punto ka naman, pero basta.
+				mga ilang oras ang nakalipas, inihatid na niya ako sa bahay.
+				Salamat ha inihatid mo pa ako, oke lang naman ako eh.. tapos salamat sa bayad nang otang mo na hindi ko alam na may otang ka ,
+				tinawanan lang ako nito, sos oke lang basta ikaw libre kita, kahit araw-araw pa .
+				hoy huwag naman , para katalagang sira sege na ingat ka sa pag-uwi, salamat ha.
+				Parang ang gaan lang sa pakiramdam kapag kasama ko sha . ewan ba, parang my mali.
+				pag pasok ko sa kwarto ko nakita ko ang lumang barya sa higaan ko na parang lumiwanag kaya kinuha ko ito at 
+				</p>
+
+
+            </article>
+
+            <div class="chapter-navigation">
+
+                <button
+                    type="button"
+                    class="chapter-button"
+                    onclick="showChapter(12)"
+                >
+                    ← Chapter 12 
+                </button>
+
+                <button
+                    type="button"
+                    class="chapter-button"
+                    onclick="showChapter(14)"
+                >
+                    Chapter 14 →
+                </button>
+
+                <span></span>
+
+            </div>
+
+        </section>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+			<!-- ================================= -->
+        <!-- CHAPTER 14  -->
+        <!-- ================================= -->
+
+        <section id="chapter14" class="chapter">
+
+            <div class="story-header">
+
+                <div class="category">Romance & Drama</div>
+
+                <h2 class="chapter-title">Chapter 14</h2>
+
+            </div>
+
+            <article class="story-content">
+
+                <p>
+                 hindi pa ako nakapag bihis nakatulog nalang ako
+				* DREAM
+				Ama ! paki usap hayaan mona kami ! ayokong makasal sa iba, mga luha ko ay walang tigil sa pag patak habang hawak ako sa mga gwardia . (inserted above line: Papa)
+				Sela ! isa itong kahiyang hiya sa pamilya natin ! ang tigas talaga nang ulo mo !
+				sege ! patayin nyo yan ! ang lalaking iyan ! galit na sabi ni Ama.
+				Nang makita ko ang gwardia babarilin na niya si Ken, bigla akong kumalas sa mga gwardia at hinarangan ang bala papalapit kay ken at hindi kon ko na alam kong ano ang sumunod dahil wala na akong malay .
+				Anak ko . . . . wala kang silbi inutil ka ! binarit niya rin ang gwardia .
+				Umiiyak ito na hawak ako , ganun mo ba talaga kamahal tong lalaking ito ? anaaak .
+                </p>
+                
+				<p>
+				Pag gising ko sa kina umagahan,may luha pa ang mga mata ko.
+				bakit naman ganun ang pana ginip koang sikip sa dibdib ay.
+				hindi pa nawala sa isip ko ang mga panaginip ko dahil may patayan na naganap at
+				sino yong nabaril ? tanong nang isipan ko gustong-gusto ko nang makita ang mga
+				mukha nila pero ang liwanag kasi ano kaya dapat kong gawin ?
+				uminom kaya ako nang pampa tulog ? baka makita ko mga mukha nila at malaman kong anong mga kasunod.
+				haaay naku, mag prepare na nga baka ma late pa ako
+				(Vincent P.O.V) nasa tabing dagat ako at naka upo at tinititigan ang lumang orasan,
+				kanino ba talaga tong orasan nato ?
+				</p>
+				
+				
+				<p>
+				tanong sa isip ko, hanggang sa dulo nang panaginip ko hindi ko man lang makita ang mga mukha nila .
+				ganun ba talaga kahala ang pera dati? mismo anak niya napatay at yong kasintahan pinatay rin ?
+				bakit ang sakit sa dibdib nito ? hindi ko naman to kwento ah...
+				ang sama nang panaginip ko kagabi hayys....
+				* Nang biglang may tumabi sa akin ... *
+				Oh ? andito ka ? napalakas ang boses ko dahil hindi ko ina asahan to... sobrang kaba talaga nang dibdib ko. at ang saya ko !!
+				Aba! Oo naman ito rin kasi pwesto ko kapag pupunta ako dito para mag pa hangin sabi ni Jess.				
+				</p>
+				
+				<p>
+				talaga ? hindi ko to inaasahan parihas pala tayo . . . ni ang laki nang smile ko parang tadhana lang hehe sa isipan ko.
+				teka bakit ka pala andito ? tanong ko nito na nagtataka
+				nanaginip ako kagabi hindi pa nawala sa isipan ko ang lungkot kasi sabi nito sa akin
+				parehas pala tayo sabi ko nito . . .
+				ganun ka rin ??. pagtatakang tanong nito sa akin nang makita niya ang lumang orasan . .
+				teka bat pamilyar yang lumang orasan mo? meron din akong luma pero barya lang nang nilabas niya ito sa bag niya . .
+				hinawakan niya ang orasan ko at hinawakan ko rin ang barya niya
+				</p>
+				
+				<p>
+				lumiwanag ang paligid namin nang sobrang liwanag at biglang nag flash back lahat nang panaginip ko at ang kaibahan ay may mukha na ito .
+				at ako ang lalaking ito at ang babae ay si jess , teka ang sikip nang dibdib ko , all this time kami pala ito biglang tumulo ang luha ko,
+				hindi ko maintindihan ang nararamdaman ko . . . kaya pala pilit kaming itinatagpo nang tadhana ..
+				(Jessel P.O.V)
+				lumiwanag lahat nang paligid namin at nag flash back lahat nang panaginip ko lumang baryo, lumang bahay, 
+				naka barong ang mga lalaki at naka filipiñana ang mga babae may malaking hacienda, may mga lumang gamit , at
+				may mga mukha na , teka pagtataka ko ako ang babae at ang lalaki ay si vincent ??
+				</p>
+				
+				<P>
+				teka ganun ko ba talaga kamahal si Vincent ? biglang tumulo ang luha ko
+				sa daming nang yari sa panaginip ko kami pala iyon ?
+				hindi ko maintindihan ang nara ramdaman ko dahil sa mga kababalaghang mga nang yari.
+				* at biglang nagpa kita sa amin si Manang Ester *
+				tahan na mga anak , tinupad ko lang ang mga kahilingan nyo na maging maligaya . . . . ilang dekada na ang nakalipas , hinintay ko itong panahon na ito para sa inyong dalawa
+				anak Sela or Jessel , tinupad ko na ang pangako ko sayo anak , sana maging masaya ka sa piling nang iyong mina mahal dati at sana sa ngayong panahon kayo parin .
+				</P>
+				
+	
+            </article>
+
+            <div class="chapter-navigation">
+
+                <button
+                    type="button"
+                    class="chapter-button"
+                    onclick="showChapter(13)"
+                >
+                    ← Chapter 13
+                </button>
+
+                <button
+                    type="button"
+                    class="chapter-button"
+                    onclick="showChapter(15)"
+                >
+                    Chapter 15 →
+                </button>
+
+                <span></span>
+
+            </div>
+
+        </section>
+		
+		
+		
+		
+		
+	
+		
+		
+		
+		
+		
+			<!-- ================================= -->
+        <!-- CHAPTER 15  -->
+        <!-- ================================= -->
+
+        <section id="chapter15" class="chapter">
+
+            <div class="story-header">
+
+                <div class="category">Romance & Drama</div>
+
+                <h2 class="chapter-title">Chapter 15</h2>
+
+            </div>
+
+            <article class="story-content">
+
+                <p>
+                 sabi nito at niyakap ako nang mahigpitmag ingat ka lagi anak ko . . . .at sobrang iyak ko sa mga oras na ito parang tumigil ang oras at biglang nawala 
+				 si manang Ester . . .nahimasmasan ako nang yumakap sa akin si vincent . . . .tahan na Jessel . . . . . 
+				 huwag ka nang umiyak . . . sabi nito sa akin . . . .tahan na rin umiyak ka rin eh... sabi ko nito at nagtawanan nalang kami . . . .
+				 hindi ko ito inaasahan kaya pala parang pamilyar ka sa akin vincent . .ganun ka rin sa akin Jess kahit sobrang sungit mo , magaan at parin pakiramdam ko sayo . . . 
+				 sabi nito sa akin na hawak niya ang kamay ko . .   
+                </p>
+				
+				
+				
+				<P>
+				So ano nang mangyayari sa atin ngayon ? tanong ko nito . . . sa kanya dahil lito narin ako.
+				sa totoo lang Jessel, kahit hindi ko pa nakita ang mga mukha sa panaginip ko.
+				may gusto na talaga ako sayo , kaya pwede ka bang ligawan ? grabe sobrang kaba nang dibdib ko sana pumayag siya -
+				bakit ako ?? tanong nito sa akin.
+				unang kita palang natin may gusto na ako sayo at maraming dahilan para gustohin ka Jessel . . . sana pumayag ka dahil malinis ang entention ko sayo Jessel.
+				OKE . . . basta dapat wala kang etatago sa akin ha . .
+				ayoko nang sinungaling . . . .
+				hindi naman kailangan sundin natin ang nakaraan Vince dahil past nayon at tayo ang present
+				</P>
+				
+				<P>
+				Iba tayo sa kanila, sa nakaraan kaya getting to know each other muna tayo vince ha.. kung oke lang sayo....
+				YES ! ofcourse Jess ... thank you ...ang saya ko talaga pumayag shang ligawan ko sha.
+				: Next day first date kumain kami nang karenderya , maraming pagkain sa lamesa pero parang hindi nya alam ang mga simpleng pagkain na ito.
+				ngunit kinain niya naman lahat at nasarapan pa talaga . . . : Next day 2nd date
+				(Vincent P.O.V)
+				hello sir Vincent my meeting po ba tayo ? tanong sa kabilang linya nang cellphone..
+				Cancel ang meeting natin ngunit pupunta parin ako may kasamang babae .. kung ano mang mapipili niya na gamit or damit bigyan nyo nang malaking discount ha.
+				Oke po sir.
+				
+				</P>
+				
+				<P>
+				bagay ba sa akin ang damit vince ?tanong nito sa akin.Ang ganda Jessel sobrang bagay sayo . .
+				bilhin ko na . .Pagtingin niya sa price nanglaki ang mata niya . . .₱ 15 188.00 ang mahal O.O ang mahal
+				wag na bilhin . . sabi nito . .may 13000 off po iyan ma'am naka sale
+				po iyan sabi nang sales lady na tumingin pa saakin at nag vow
+				parang sumigla agad ang mata niya nang marinig nya iyon.
+				ito talaga ang nagustuhan ko sa kanya apaka simpleng babae
+				hindi rin magastos at higit sa lahat
+				mabait at maganda pa.
+				</P>
+				
+				<P>
+				Kahit ano-ano na ang mga date namin importante kasama ko si Jessel at comfortable siya sa akin .Insan napapansin ko parang ang lapit nyo na sa isa't-isa nang beshy ko ah...
+				Sinagot ka na ba ni Jessel ? tanong ni Rina sa akin dahil dumalaw ito sa opisina ko.hindi pa nga eh, pero willing naman akong maghintay insan..
+				Kailan mo balak sabihin ni beshy itong posisyon mo ? itong buhay mo . . .humanap pa ako nang tyempo insan eh..sabihin mo na agad insan para wala kanang tinatago sa beshy ko.
+				ayaw panaman non niloloko siya.   
+				
+				Pagkalipas nang ilang araw, dinala ko si Jessel sa companya ko. dahil hindi ko na kayang itago pa ito sana hindi siya magalit sa akin
+				bakit tayo andito ? dito ka nagtatrabaho vince ? tanong nito sa akin hanggang sa pumasok na kami sa opisina ko. nadatnan pa namin ang secretary ko.
+				sir Vince nilagay ko na lahat docs sa lamesa mo paki check lang po need po iyan nang papa mo sabi nito. Sege salamat Alex ,
+				namilog ang mga mata ni Jessel pag tingin niya sa lamesa ko . . isa kang CEO ?? bakit ngayon mo lang sinabi to sa akin ? pagtataka nitong tanong				
+				</P>
+				
+				         
+
+            </article>
+
+            <div class="chapter-navigation">
+
+                <button
+                    type="button"
+                    class="chapter-button"
+                    onclick="showChapter(14)"
+                >
+                    ← Chapter 14 
+                </button>
+
+                <button
+                    type="button"
+                    class="chapter-button"
+                    onclick="showChapter(16)"
+                >
+                    Chapter 16 →
+                </button>
+
+                <span></span>
+
+            </div>
+
+        </section>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+			<!-- ================================= -->
+        <!-- CHAPTER 16 -->
+        <!-- ================================= -->
+
+        <section id="chapter16" class="chapter">
+
+            <div class="story-header">
+
+                <div class="category">Romance & Drama</div>
+
+                <h2 class="chapter-title">Chapter 16</h2>
+
+            </div>
+
+            <article class="story-content">
+
+                <p>
+                 I'm sorry Jessel, natakot kasi ako na baka ipa itigil mo ang pang liligaw ko sayo eh ni hindi mo pa ako lubos na kilala.
+				 Kaya pala, feeling ko may tinatago ka sa akin, kaya hindi pa kita sinasagot eh..Jessel maniwala ka,
+				 mahal na mahal kita ikaw lang ang babae na nililigawan ko kahit itanong mo pa kay Rina.dahil wala kang paki alam kong mahirap man ako at napaka 
+				 simple mo lang sa buhay ni wala kang paki alam sa kayamanan...Jessel hindi ko motibo ang lokohin ka kaya sinasabi ko na ito sayo dahil ayoko nang may tinatago
+				 sayo bigla akong natahimik dahil sa biglang paghalik ni Jessel sa akin, grabe ang lakas nang kaba ko nang dibdib ko at ni hindi ko man lang ito na emagine parang hihimatayin na ata ako   
+                </p>
+				
+				
+				<p>
+				tinawanan niya lamang ako at ito ako natulala parin . . . .huhu first kiss ko yon Jessel . . . 
+				sabi ko nitooh tapos ??? sagot nito na nakangisipwede pa isa ulit ?? sagot ko nito na aakmang hahalik nito ulit Yong palad niya ang nasa labi ko . . .
+				hep hep! hindi pa tayo tapos galit parin ako sayo . . . . sabi nito na naka taas ang
+				isang kilay Sorry na kasi pagmamakaawa ko nito Oo na alam ko may tinatago ka may hinala na ako sayo kaya lang wala akong proweba si Rina
+				ayaw niya rin akong sagutin naghihintay lang ako na sabihin mo sa akin ang mga sekreto mo . o mga katotohanan . .
+				sabi nito sa akin   
+				</p>
+				
+				<p>
+				so hindi ka galit sa akin ? tuloy parin pan liligaw ko sayo ? huwag mo nang ituloy ang pang liligaw sa akin , sabi nito
+				at parang babagsak lahat ang luha ko.. bakit ? galit ka talaga sa akin Jessel?
+				na paluha na ang mata ko dahil sa sinabi nito sa akin. pinahid niya ito sa kamay niya . . .
+				bakit ka pa mang liligaw eh sinasagot na kita !! sabi nito na naka ngisi at tuloy parin ang luha ko pero at this time tears of joy na.
+				so tayo na Jessel ? tanong ko nito ulit O.O nga kasi sagot nito sa akin
+				at niyakap niya ako nang mahigpit
+				</p>
+				
+                
+				<P>
+				pero bakit ? akala ko galit ka sa mga mayayaman ?hindi naman sa galit vincent . . . eh sadyang mahal na kita eh . . .
+				nong birthday ni Rina napagtanto kong mabait ka naman pala kaya nagustuhan na kita non . .hindi naman sa galit ako sa mga mayayaman ayaw ko lang yong mga mata pobre . . .
+				eh parihas lang tayo dito eh mga tao . .niyakap ko ito nang mahigpit kaya mahal na mahal kita eh . . .
+				pabulong ko nitong sabi kaya . . . esout mona ito . . .isinooot ko sa kanya ang singsing na may malaking Diamond   
+				</P>
+				
+				<p>
+				Ano to ?? tanong nito sa akin na parang hindi maka paniwala.. Papakasalan na kita Jessel
+				ha !! gulat nitong sambit teka . . . . kakasagot ko lang sayo ah
+				SURE kaba talaga vince ? Jessel wala na akong ibang gustong iharap sa altar kung di ikaw lang Jessel sa ayaw mo man or gusto pakasal na tayo ! sabi ko nito na naka ngisi ..
+				teka ang aga . . . napa luha narin sha sa saya habang tingin tingin sa kamay totoo ba talaga to ?? . huhu . . . hindi parin ito maka paniwala . .
+				</p>
+				
+				<p>
+				Next day . . . papa girlfriend ko po at soon to be my wife pakilala ko nito kay papa
+				anak ngayon ka lang umuwi sa mansion at may aasawahin ka pang dala I can't believe this . . . .
+				is this really true ?? tanong nitong manghang mangha.
+				Jessel Luinzo Fuertez po nice to meet you po pakilala nito kay papa.
+				Fuertez ?? teka my kakilala ako dating Fuertez , Luinzo Fuertez . . sabi ni papa.
+				Oh ?? papa ko po iyon . . . Luinzo Fuertez . .
+				teka anak ka ni Luinzo ? . . O my god anak !! ang liit nga naman nang mundo!
+				</p>
+				
+				
+				
+
+            </article>
+
+            <div class="chapter-navigation">
+
+                <button
+                    type="button"
+                    class="chapter-button"
+                    onclick="showChapter(15)"
+                >
+                    ← Chapter 15 
+                </button>
+
+                <button
+                    type="button"
+                    class="chapter-button"
+                    onclick="showChapter(17)"
+                >
+                    Chapter 17  →
+                </button>
+
+                <span></span>
+
+            </div>
+
+        </section>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+			<!-- ================================= -->
+        <!-- CHAPTER 17 -->
+        <!-- ================================= -->
+
+        <section id="chapter17" class="chapter">
+
+            <div class="story-header">
+
+                <div class="category">Romance & Drama</div>
+
+                <h2 class="chapter-title">Chapter 17</h2>
+
+            </div>
+
+            <article class="story-content">
+
+                <p>
+                 Luinzo is my bussiness partner dati at may share holder ito sa company natin anak until now ..
+				hu ? pano nangyari yon ? . . taka kong tanong nito . .
+				Condolence iha na hindi ako naka dalaw sa pagkamatay nang iyng ama nasa bussiness trip kasi ako non ngunit dumalaw ako sa pungtod niya iha . . . .
+				ipinahanap kita iha kasi sayo yon naka pangalan eh ang share holder nang iyong ama ngunit hindi kita mahanap
+				ay opo lumipat kami ng bahay ni mama para makalimot po sa nangyari po.
+				pasensya ka na talaga iha ha . . .
+				so ano kukunin mona ang share mo ? tanong ni papa kay Jessel
+                </p>
+                
+				
+				<p>
+				po ? naku hindi po . .sa inyo nalang yan po . . . Ha ?? milyon din yon iha ayaw mong kunin ?
+				tanong ni papa na parang hindi maka paniwala Oho sa inyo nalang po iyon huwag nyo nalang ho sabihin sa mga relatives ko baka mag aaway nanaman po kami nito.
+				sagot ni Jessel. Anak ! nasa tamang babae ka . ! sabi ni papa na kataas ang dalawang kamay . .Opo talaga po nasa tamang babae po talaga ako hehe . . at proud ko itong sabi
+				iha hindi pwede , sayo yon at para sayo talaga iyon. alam mo ba ? may promise kami nang iyong ama.			
+				</p>
+				
+				
+				<P>
+				Ano po iyon ? . tanong ni Jessel Na ang mga anak namin ipapakasal sa takdang panahon . . . naging matapat kong kaibigan si luinzo kaya ang lungkot ko talaga sa pagkawala ng iyong ama.
+				teka may binigay akong aso sayo nong grade six ka palang , birthday mo iyon kasi nalaman kong mahilig ka sa aso . . lima iyon kumusta na pala ?? tanong ni papa
+				sa iyo po pala iyon ? hehe akala ko po kay papa . . . malalaki na po ang mga aso ko po maraming salamat po sa regalo nyo po ha . sagot ni Jessel.
+				teka nga lang papa . alam mo bang malapit na akong ipinalapa sa mga aso niya ? I can't believe this sa inyo pala galing iyon ? manghang sabi ko nito
+				at nag tawanan lang sila sa akin.
+
+				The END.
+				</P>
+				
+				<P>
+					Hindi natin malalaman ang hinaharap Kahit alam na natin ang nakaraan ngunit kong ang tadhana na ang gumawa nang paraan para sa dalawang
+					puso na nagmamahalan , wala na itong takas tulad nina Jesset at Vincent.
+				</p>
+				
+					<center>
+				<h1><p>				Writer : (signature) </h1></p>			
+				<h2><p>					Jerrallyn Perez </h2></p>
+				
+            </article>
+
+            <div class="chapter-navigation">
+
+                <button
+                    type="button"
+                    class="chapter-button"
+                    onclick="showChapter(16)"
+                >
+                    ← Chapter 16
+                </button>
+
+                <button
+                    type="button"
+                    class="chapter-button"
+                    onclick="showChapter(1)"
+                >
+                    Chapter 1 →
+                </button>
+
+                <span></span>
+
+            </div>
+
+        </section>
+		
+		
+		
+		
+
+    </main>
+
+    <footer>
+        <p>
+            © <span id="year"></span> Stories & Beyond. All Rights Reserved.
+        </p>
+    </footer>
+
+
+    <script>
+
+        // AUTOMATIC COPYRIGHT YEAR
+
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+
+
+        // CHAPTER NAVIGATION FUNCTION
+
+        function showChapter(chapterNumber) {
+
+            // Hide all chapters
+
+            const chapters = document.querySelectorAll(".chapter");
+
+            chapters.forEach(function(chapter) {
+                chapter.classList.remove("active");
+            });
+
+            // Show selected chapter
+
+            const selectedChapter =
+                document.getElementById("chapter" + chapterNumber);
+
+            if (selectedChapter) {
+
+                selectedChapter.classList.add("active");
+
+                // Return to the top of the page
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+
+            }
+        }
+
+    </script>
+
+</body>
+</html>
